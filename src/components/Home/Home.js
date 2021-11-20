@@ -1,32 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { Link } from "ract-router-dom";
 
 export default function Home() {
-    const [locations, setLocations] = useState(null);
-    // const router = useRouter();
-  
-    useEffect(() => {
+  const [locations, setLocations] = useState(null);
+  // const router = useRouter();
 
-        console.log("zzzzzzzz");
-        const getLocations = async() => {
+  useEffect(() => {
+    const getLocations = async () => {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/location`);
+      const updatedLocations = await response.json();
+      setLocations(updatedLocations.locations);
+    };
 
-            console.log(`${process.env.REACT_APP_API_URL}/location`);
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/location`);
-            const updatedLocations = await response.json();
-            setLocations(updatedLocations.locations);
-        }
+    getLocations();
+  }, []);
 
-        getLocations();
-  
-    }, []);
-  
-    const locationsList = (
-      <ul>
-        {locations && locations.map((location, index) => {
+  const locationsList = (
+    <ul>
+      {locations &&
+        locations.map((location, index) => {
           return (
-            <li
-              key={location.name + index}
-            >
-              <div className="text-center text-lg font-bold">{location.name}</div>
+            <li key={location.name + index}>
+              <div className="text-center text-lg font-bold">
+                {location.name}
+              </div>
               <div>location: {location.location}</div>
               <div>description: {location.description}</div>
               <div>price: {location.price}</div>
@@ -44,20 +41,20 @@ export default function Home() {
             </li>
           );
         })}
-      </ul>
-    );
-    return (
-      <div className="px-20 flex flex-col items-center ">
-        <div className="text-center text-green-800 text-5xl mb-10">
-          Traveling Locations
-        </div>
-        {locationsList}
-        <button
-          className="bg-green-900 px-5 py-5 rounded-xl font-extrabold	text-white cursor-pointer ontent-center"
-        //   onClick={() => router.push("/location")}
-        >
-          Create New Location
-        </button>
+    </ul>
+  );
+  return (
+    <div className="px-20 flex flex-col items-center ">
+      <div className="text-center text-green-800 text-5xl mb-10">
+        Traveling Locations
       </div>
-    );
+      {locationsList}
+      <button
+        className="bg-green-900 px-5 py-5 rounded-xl font-extrabold	text-white cursor-pointer ontent-center"
+        //   onClick={() => router.push("/location")}
+      >
+        Create New Location
+      </button>
+    </div>
+  );
 }
