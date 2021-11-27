@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "ract-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [locations, setLocations] = useState(null);
@@ -27,17 +27,9 @@ export default function Home() {
               <div>location: {location.location}</div>
               <div>description: {location.description}</div>
               <div>price: {location.price}</div>
-              {/* <Link
-                type="button"
-                href={{
-                  pathname: "/location/[id]",
-                  query: {
-                    id: location.id,
-                  },
-                }}
-              >
-                <a className="bg-green-100 p-2 px-8 rounded-md">Info</a>
-              </Link> */}
+              <Link to="/kaki">
+                Info
+              </Link>
             </li>
           );
         })}
@@ -49,12 +41,8 @@ export default function Home() {
         Traveling Locations
       </div>
       {locationsList}
-      <button
-        className="bg-green-900 px-5 py-5 rounded-xl font-extrabold	text-white cursor-pointer ontent-center"
-        //   onClick={() => router.push("/location")}
-      >
-        Create New Location
-      </button>
+      <Link to="/new-location">Create New Location</Link>
+
     </div>
   );
 }
