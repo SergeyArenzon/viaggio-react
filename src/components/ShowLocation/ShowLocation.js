@@ -13,7 +13,7 @@ export default function ShowLocation() {
   const [avgRating, setAvgRating] = useState(null);
   const titleRef = useRef();
   const bodyRef = useRef();
-  let params = useParams();
+  const params = useParams();
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -127,7 +127,7 @@ export default function ShowLocation() {
         <div>Discription:{locationData.description}</div>
 
         <div>
-          <Link to={`${params.id}/edit`}>
+          <Link to={`/locations/${params.id}/edit`}>
             <button>Edit</button>
           </Link>
           <button onClick={onDeleteHandler}>Delete</button>
