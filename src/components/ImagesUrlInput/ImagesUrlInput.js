@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import PropTypes from 'prop-types';
+import Map from "../Map/Map";
 
 
 export default function ImagesUrlInput({ setImageUrls, imageUrls }) {

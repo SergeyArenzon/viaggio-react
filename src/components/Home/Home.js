@@ -27,7 +27,7 @@ export default function Home() {
               <div>location: {location.location}</div>
               <div>description: {location.description}</div>
               <div>price: {location.price}</div>
-              <Link to="/kaki">
+              <Link to={`/locations/${location.id}`}>
                 Info
               </Link>
             </li>
