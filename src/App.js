@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateLocation from "./components/CreateLocation/CreateLocation";
 import ShowLocation from "./components/ShowLocation/ShowLocation";
 import EditLocation from "./components/EditLocation/EditLocation";
+import Auth from "./components/Auth/Auth";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>}/>
+          <Route path="/auth" element={<Auth/>}/>
           <Route path="/new-location" element={<CreateLocation/>}/>
           <Route path="/locations/:id" element={<ShowLocation/>}/>
           <Route path="/locations/:id/edit" element={<EditLocation/>}/>
