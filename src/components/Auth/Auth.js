@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { userSchema } from "../../validations/user";
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "./../../features/user";
 
 export default function Auth() {
   const emailRef = useRef();
@@ -9,6 +11,9 @@ export default function Auth() {
 
   const [loading, setLoading] = useState(true);
   const [signUpMode, setSignUpMode] = useState(true);
+
+  const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
 
   /////////////////////
   //  Signout method //
@@ -28,16 +33,13 @@ export default function Auth() {
       alert("Creds isnt valid!");
       return;
     }
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/register`,
-      {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     if (response.status === 201) {
       // router.replace('/');
@@ -57,17 +59,18 @@ export default function Auth() {
       password: passwordRef.current.value,
     };
 
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/login`,
-      {
-        method: "POST",
-        body: JSON.stringify(data),
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+
+    const userData = await response.json();
+    dispatch(login(userData.user))
   };
 
   const signUpForm = (
@@ -88,11 +91,19 @@ export default function Auth() {
     </form>
   );
 
-  const x = async () => {
-    const z = await fetch(`${process.env.REACT_APP_API_URL}/location/test`);
-    const f = await z.json();
-    console.log(f);
+  const logoutHandler = async () => {
+    const request = `${process.env.REACT_APP_API_URL}/logout`;
+          console.log(request);
+          fetch(request, {
+            credentials: "include",
+          }).then((res) => console.log(res))
+    dispatch(logout())
+
+    
   };
+
+
+  console.log(user);
 
   return (
     <div>
@@ -107,20 +118,17 @@ export default function Auth() {
       </button>
 
       <button
-        onClick={async() => {
-            const s = `${process.env.REACT_APP_API_URL}/logout`;
-            console.log(s);
-           fetch(s, {
-            credentials: "include",
-          }).then((res) => console.log(res));
-        }}
+        onClick={logoutHandler}
       >
         logout
       </button>
-      <button onClick={x}>test</button>
+      <button onClick={logoutHandler}>test</button>
 
       {signUpMode ? signUpForm : logInForm}
       <button onClick={() => setSignUpMode(!signUpMode)}>Switch</button>
+      <div>firstName: {user.firstName}</div>
+      <div>lastName: {user.lastName}</div>
+      <div>email: {user.email}</div>
     </div>
   );
 }

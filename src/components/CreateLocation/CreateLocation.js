@@ -27,7 +27,6 @@ const [imageUrls, setImageUrls] = useState([]);
       location: locationRef.current.value,
       price: priceRef.current.value,
       description: descriptionRef.current.value,
-      email: session.user.email,
       images: imageUrls,
       coordinate: [latRef.current.value, lngRef.current.value],
     };
@@ -37,12 +36,13 @@ const [imageUrls, setImageUrls] = useState([]);
     const isValid = true;
 
     if (isValid) {
-      const response = await fetch("/api/location", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/location`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: 'include'
       });
       console.log(await response.json());
       navigate("/");
