@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "./../../features/user";
+
+
 
 export default function Home() {
   const [locations, setLocations] = useState(null);
-  // const router = useRouter();
+  const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
+
+
 
   useEffect(() => {
     const getLocations = async () => {
@@ -11,7 +18,6 @@ export default function Home() {
       const updatedLocations = await response.json();
       setLocations(updatedLocations.locations);
     };
-
     getLocations();
   }, []);
 
@@ -35,6 +41,8 @@ export default function Home() {
         })}
     </ul>
   );
+
+  console.log(user);
   return (
     <div className="px-20 flex flex-col items-center ">
       <div className="text-center text-green-800 text-5xl mb-10">
