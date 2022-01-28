@@ -10,13 +10,13 @@ const initialStateValue = {
 
 export const userSlice = createSlice({
   name: "user",
-  initialState:  { value: initialStateValue },
+  initialState: {info: initialStateValue},
   reducers: {
     login: (state, action) => {
-      state.value = action.payload;
+      state.info = action.payload;
     },
     logout: (state,action) => {
-      state.value = initialStateValue;
+      state.info = initialStateValue;
     },
   },
 });

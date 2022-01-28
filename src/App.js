@@ -12,7 +12,7 @@ import { login } from "./features/user";
 import { AuthApi } from "./services/api/index.js";
 
 function App() {
-  const user = useSelector((state) => state.user.value);
+  const user = useSelector((state) => state.user.info);
   const dispatch = useDispatch();
 
   useEffect(() => {
