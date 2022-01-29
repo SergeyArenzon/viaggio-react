@@ -9,21 +9,23 @@ import Auth from "./components/Auth/Auth";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "./features/user";
+import { AuthApi } from "./services/api/index.js";
 
 function App() {
-  const user = useSelector((state) => state.user.value);
+  const user = useSelector((state) => state.user.info);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getUser = async() => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/user`, {
-        credentials: "include",
-      });
-      const user = await response.json();
-      dispatch(login(user.user));
-    }
+    const getUser = async () => {
+      const userInfo = await AuthApi.user();
+      if (!userInfo.error){
+        dispatch(login(userInfo));
+      }  
+    };
     getUser();
   }, []);
+
+  console.log(user);
   return (
     <Layout>
       <BrowserRouter>

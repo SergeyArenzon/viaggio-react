@@ -102,9 +102,6 @@ export default function Auth() {
     
   };
 
-
-  console.log(user);
-
   return (
     <div>
       <button
@@ -126,9 +123,7 @@ export default function Auth() {
 
       {signUpMode ? signUpForm : logInForm}
       <button onClick={() => setSignUpMode(!signUpMode)}>Switch</button>
-      <div>firstName: {user.firstName}</div>
-      <div>lastName: {user.lastName}</div>
-      <div>email: {user.email}</div>
+    
     </div>
   );
 }
