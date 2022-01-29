@@ -18,17 +18,17 @@ function App() {
   useEffect(() => {
     const getUser = async () => {
       const userInfo = await AuthApi.user();
-      if (!userInfo.error){
+      if (!userInfo.error) {
         dispatch(login(userInfo));
-      }  
+      }
     };
     getUser();
   }, []);
 
   console.log(user);
   return (
-    <Layout>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth />} />
@@ -36,8 +36,8 @@ function App() {
           <Route path="/locations/:id" element={<ShowLocation />} />
           <Route path="/locations/:id/edit" element={<EditLocation />} />
         </Routes>
-      </BrowserRouter>
-    </Layout>
+      </Layout>
+    </BrowserRouter>
   );
 }
 

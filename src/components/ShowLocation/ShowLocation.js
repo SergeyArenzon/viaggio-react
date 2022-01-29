@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import StarsRating from '../StarsRating/StarsRating';
-import ImageCarousel from "../UI/ImageCarousel/ImageCarousel";
+import StarsRating from '../StarsRating/StarsRating.jsx';
+import ImageCarousel from "../UI/ImageCarousel/ImageCarousel.tsx";
 import Map from "../Map/Map";
 import { Link, useParams } from "react-router-dom";
 

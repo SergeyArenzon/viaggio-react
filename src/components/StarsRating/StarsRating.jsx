@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 
 
 import { useEffect } from "react";
-import PropTypes from 'prop-types';
 
 
 const labels = {
@@ -30,10 +29,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StarsRating({currentRating}) {
-  StarsRating.propTypes = {
-    currentRating: PropTypes.number.isRequired,
-  };
+
+
+const StarsRating = ({currentRating})=> {
 
   const [value, setValue] = useState(currentRating);
   const [hover, setHover] = useState(-1);
@@ -45,7 +43,7 @@ export default function StarsRating({currentRating}) {
     setValue(currentRating);
   }, [currentRating])
 
-  const onRatingClickHandler = async () => {
+  const onRatingClickHandler = async() => {
     // const user = session.user;
     const { id } = useParams;
 
@@ -81,3 +79,5 @@ export default function StarsRating({currentRating}) {
     </div>
   );
 }
+
+export default StarsRating;

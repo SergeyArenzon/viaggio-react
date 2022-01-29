@@ -1,9 +1,9 @@
-// import TopBar from './TopBar/TopBar';
+import TopBar from '../../components/TopBar/TopBar.tsx';
 
 export default function Layout({ children }) {
     return (
         <div>
-            {/* <TopBar /> */}
+            <TopBar />
             <main>{children}</main>
         </div>
     );
