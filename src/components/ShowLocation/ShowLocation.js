@@ -1,12 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
-import StarsRating from '../StarsRating/StarsRating.jsx';
+import StarsRating from '../StarsRating/StarsRating.tsx';
 import ImageCarousel from "../UI/ImageCarousel/ImageCarousel.tsx";
 import Map from "../Map/Map";
 import { Link, useParams } from "react-router-dom";
 
 export default function ShowLocation() {
-  //   const router = useRouter();
-//   const { id } = router.query;
 
   const [locationData, setLocationData] = useState(null);
   const [comments, setComment] = useState([]);
