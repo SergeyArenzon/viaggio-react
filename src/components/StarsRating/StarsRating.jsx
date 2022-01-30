@@ -36,6 +36,7 @@ const StarsRating = ({currentRating})=> {
   const [value, setValue] = useState(currentRating);
   const [hover, setHover] = useState(-1);
   const classes = useStyles();
+  const { id } = useParams();
 
 
 
@@ -44,14 +45,11 @@ const StarsRating = ({currentRating})=> {
   }, [currentRating])
 
   const onRatingClickHandler = async() => {
-    // const user = session.user;
-    const { id } = useParams;
-
     const data = {  rating: value };
-
-    const res = await fetch(`/api/location/${id}/rating`, {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/location/${id}/rating`, {
       method: "PUT",
       body: JSON.stringify(data),
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
