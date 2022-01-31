@@ -26,11 +26,11 @@ const useStyles = makeStyles({
 });
 
 type StarsRatingProps = {
-  currentRating: number;
+  currentRating: number | null;
 };
 
 const StarsRating = ({ currentRating }: StarsRatingProps): JSX.Element => {
-  const [value, setValue] = useState<number>(currentRating);
+  const [value, setValue] = useState<number | null>(currentRating);
   const [hover, setHover] = useState<number>(-1);
   const classes = useStyles();
   const { id } = useParams();
