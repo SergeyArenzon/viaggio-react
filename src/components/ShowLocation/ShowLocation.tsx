@@ -11,7 +11,7 @@ interface Comment {
 }
 interface Location {
   price: string, 
-  coordinate: string,
+  coordinate: [number, number],
   description: string,
   location: string,
   name: string,

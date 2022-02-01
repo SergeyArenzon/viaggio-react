@@ -2067,6 +2067,13 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
+"@types/google-map-react@^2.1.4":
+  "integrity" "sha512-2510nBV6Jnyr34x4W39VlhGwspDGG+8/7TSKXd8blUlWEAvmep+qjl92gWacSUipZqdngaymoCOJ1Te5SkUqag=="
+  "resolved" "https://registry.npmjs.org/@types/google-map-react/-/google-map-react-2.1.4.tgz"
+  "version" "2.1.4"
+  dependencies:
+    "@types/react" "*"
+
 "@types/graceful-fs@^4.1.2":
   "integrity" "sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw=="
   "resolved" "https://registry.npmjs.org/@types/graceful-fs/-/graceful-fs-4.1.5.tgz"
