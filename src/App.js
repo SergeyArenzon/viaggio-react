@@ -4,7 +4,7 @@ import Layout from "./containers/Layout/Layout";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateLocation from "./components/CreateLocation/CreateLocation";
 import ShowLocation from "./components/ShowLocation/ShowLocation";
-import EditLocation from "./components/EditLocation/EditLocation";
+import EditLocation from "./components/EditLocation/EditLocation.tsx";
 import Auth from "./components/Auth/Auth";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";

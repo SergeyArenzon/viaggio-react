@@ -5,15 +5,26 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 
-export default function EditLocation() {
-  const nameRef = useRef();
-  const locationRef = useRef();
-  const priceRef = useRef();
-  const descriptionRef = useRef();
+interface Location {
+  price: string, 
+  coordinate: [number, number],
+  description: string,
+  location: string,
+  name: string,
+  images: []
+  
+}
+
+
+const EditLocation = () => {
+  const nameRef = useRef<HTMLInputElement>(null);
+  const locationRef = useRef<HTMLInputElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const { id } = useParams();
 
 
-  const [locationData, setLocationData] = useState(null);
+  const [locationData, setLocationData] = useState<Location | null>(null);
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -34,14 +45,15 @@ export default function EditLocation() {
     //     return;
     // }
 
+    if(nameRef.current === null || locationRef.current === null || priceRef.current === null || descriptionRef.current === null){
+      return;
+    }
     const body = JSON.stringify({
         name: nameRef.current.value,
         location: locationRef.current.value,
         price: priceRef.current.value,
         description: descriptionRef.current.value,
     })
-    console.log(body);
-
 
     fetch(`${process.env.REACT_APP_API_URL}/location/${id}/edit`, 
     {
@@ -90,7 +102,6 @@ export default function EditLocation() {
       <div>
         Description:{" "}
         <textarea
-          type="text"
           defaultValue={locationData.description}
           ref={descriptionRef}
         />
@@ -102,3 +113,6 @@ export default function EditLocation() {
     </div>
   );
 }
+
+
+export default EditLocation;
