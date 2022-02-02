@@ -1,6 +1,6 @@
 import "./App.css";
 import Home from "./components/Home/Home";
-import Layout from "./containers/Layout/Layout";
+import Layout from "./containers/Layout/Layout.tsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreateLocation from "./components/CreateLocation/CreateLocation.tsx";
 import ShowLocation from "./components/ShowLocation/ShowLocation";

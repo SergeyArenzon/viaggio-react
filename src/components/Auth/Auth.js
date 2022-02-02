@@ -1,13 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { userSchema } from "../../validations/user";
 import { useSelector, useDispatch } from "react-redux";
-import { login, logout } from "./../../features/user";
+import { login, logout } from "../../features/user";
 
 export default function Auth() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const lastNameRef = useRef();
-  const firstNameRef = useRef();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const lastNameRef = useRef<HTMLInputElement>(null);
+  const firstNameRef = useRef<HTMLInputElement>(null);
 
   const [loading, setLoading] = useState(true);
   const [signUpMode, setSignUpMode] = useState(true);
@@ -68,9 +68,8 @@ export default function Auth() {
       },
     });
 
-
     const userData = await response.json();
-    dispatch(login(userData.user))
+    dispatch(login(userData.user));
   };
 
   const signUpForm = (
@@ -93,13 +92,11 @@ export default function Auth() {
 
   const logoutHandler = async () => {
     const request = `${process.env.REACT_APP_API_URL}/logout`;
-          console.log(request);
-          fetch(request, {
-            credentials: "include",
-          }).then((res) => console.log(res))
-    dispatch(logout())
-
-    
+    console.log(request);
+    fetch(request, {
+      credentials: "include",
+    }).then((res) => console.log(res));
+    dispatch(logout());
   };
 
   return (
@@ -114,16 +111,11 @@ export default function Auth() {
         checkckkk
       </button>
 
-      <button
-        onClick={logoutHandler}
-      >
-        logout
-      </button>
+      <button onClick={logoutHandler}>logout</button>
       <button onClick={logoutHandler}>test</button>
 
       {signUpMode ? signUpForm : logInForm}
       <button onClick={() => setSignUpMode(!signUpMode)}>Switch</button>
-    
     </div>
   );
 }
