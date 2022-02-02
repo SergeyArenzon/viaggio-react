@@ -1,28 +1,28 @@
 import React, { useRef } from "react";
-import PropTypes from 'prop-types';
-import Map from "../Map/Map";
 
+interface ImagesUrlInputProps {
+  setImageUrls: Function,
+  imageUrls: string[]
+}
 
-export default function ImagesUrlInput({ setImageUrls, imageUrls }) {
-
-  ImagesUrlInput.propTypes = {
-    imageUrls: PropTypes.array.isRequired,
-    setImageUrls: PropTypes.func.isRequired,
-  };
+const ImagesUrlInput = ({ setImageUrls, imageUrls }: ImagesUrlInputProps) => {
   
-  const inputRef = useRef();
-  const addUrlHandler = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const addUrlHandler = (): void => {
     const newImageUrls = [...imageUrls];
     newImageUrls.push("");
     setImageUrls(newImageUrls);
   };
-  const saveHandler = (index) => {
+  const saveHandler = (index: number): void => {
     let newImageUrls = [...imageUrls];
-    newImageUrls[index] = inputRef.current.value;
-    setImageUrls(newImageUrls);
+    if(inputRef.current){
+      newImageUrls[index] = inputRef.current.value;
+      setImageUrls(newImageUrls);
+    }
   };
 
-  const deleteHandler = (index) => {
+  const deleteHandler = (index: number): void => {
     console.log(imageUrls);
     const newImageUrls = [...imageUrls];
     newImageUrls.splice(index, 1);
@@ -47,3 +47,6 @@ export default function ImagesUrlInput({ setImageUrls, imageUrls }) {
     </div>
   );
 }
+
+
+export default ImagesUrlInput;

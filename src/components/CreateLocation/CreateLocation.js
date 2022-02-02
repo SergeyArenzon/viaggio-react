@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom';
-import ImagesUrlInput from '../ImagesUrlInput/ImagesUrlInput';
+import ImagesUrlInput from '../ImagesUrlInput/ImagesUrlInput.tsx';
 
 export default function CreateLocation() {
 

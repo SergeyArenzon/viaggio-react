@@ -3,16 +3,13 @@ import markerSvg from "../../assets/images/google_maps_mark.svg";
 
 const { REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY } = process.env;
 
-const Map = ({ lat, lng }: {
-  lat: number, 
-  lng: number
-}
-)=> {
+
+const Map = ({ lat, lng})=> {
 
   return (
     <div style={{ height: "400px", width: "400px" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY!}}
+        bootstrapURLKeys={{ key: REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY}}
         defaultCenter={{ lat, lng }}
         defaultZoom={11}
       >
@@ -22,7 +19,6 @@ const Map = ({ lat, lng }: {
           lng={lng}
           text="My Marker"
           alt="marker"
-          
         />
       </GoogleMapReact>
     </div>
