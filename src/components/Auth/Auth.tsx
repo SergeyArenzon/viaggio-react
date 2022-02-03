@@ -3,6 +3,20 @@ import { userSchema } from "../../validations/user";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../../features/user";
 
+
+interface IUser {
+  user: {
+    info: {
+      firstName: string,
+      lastName: string,
+      email: string,
+      _id: string,
+      date: string,
+    }
+  }
+}
+
+
 export default function Auth() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -12,15 +26,23 @@ export default function Auth() {
   const [loading, setLoading] = useState(true);
   const [signUpMode, setSignUpMode] = useState(true);
 
-  const user = useSelector((state) => state.user.value);
+  const user = useSelector((state: IUser) => state.user.info);
   const dispatch = useDispatch();
 
   /////////////////////
   //  Signout method //
   /////////////////////
-  const registerHandler = async (event) => {
+  const registerHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (
+      emailRef.current === null ||
+      passwordRef.current === null ||
+      firstNameRef.current === null ||
+      lastNameRef.current === null
+    ) {
+      return;
+    }
     const data = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -51,9 +73,15 @@ export default function Auth() {
   ////////////////////
   //  Signin method //
   ////////////////////
-  const loginHandler = async (event) => {
+  const loginHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (
+      emailRef.current === null ||
+      passwordRef.current === null
+    ) {
+      return;
+    }
     const data = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -90,6 +118,7 @@ export default function Auth() {
     </form>
   );
 
+
   const logoutHandler = async () => {
     const request = `${process.env.REACT_APP_API_URL}/logout`;
     console.log(request);
@@ -99,6 +128,9 @@ export default function Auth() {
     dispatch(logout());
   };
 
+
+  console.log(user);
+  
   return (
     <div>
       <button

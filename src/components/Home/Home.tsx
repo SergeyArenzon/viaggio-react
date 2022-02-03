@@ -3,9 +3,32 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Locations } from "../../services/api/index.js";
 
+
+interface IUser {
+  user: {
+    info: {
+      firstName: string,
+      lastName: string,
+      email: string,
+      _id: string,
+      date: string,
+    }
+  }
+}
+interface ILocation {
+  price: string, 
+  coordinate: [number, number],
+  description: string,
+  location: string,
+  name: string,
+  images: [],
+  id: string
+  
+}
+
 export default function Home() {
-  const [locations, setLocations] = useState(null);
-  const user = useSelector((state) => state.user.value);
+  const [locations, setLocations] = useState<null | ILocation[]>(null);
+  const user = useSelector((state: IUser) => state.user.info);
 
   useEffect(() => {
     const getLocations = async () => {
@@ -18,7 +41,7 @@ export default function Home() {
   const locationsList = (
     <ul>
       {locations &&
-        locations.map((location, index) => {
+        locations.map((location: ILocation, index) => {
           return (
             <li key={location.name + index}>
               <div className="text-center text-lg font-bold">
@@ -33,6 +56,7 @@ export default function Home() {
         })}
     </ul>
   );
+
 
   return (
     <div className="px-20 flex flex-col items-center ">

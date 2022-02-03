@@ -1,4 +1,4 @@
-import Locations from "./locations";
+import Locations from "./locations.tsx";
 import AuthApi from "./auth";
 
 export { Locations, AuthApi };
