@@ -31,7 +31,9 @@ function App() {
   useEffect(() => {
     const getUser = async () => {
       const userInfo = await AuthApi.user();
-      if (!userInfo.error) {
+      console.log(userInfo);
+      
+      if (!userInfo?.error) {
         dispatch(login(userInfo));
       }
     };
@@ -39,6 +41,7 @@ function App() {
   }, []);
 
   
+
   
   return (
     <BrowserRouter>
