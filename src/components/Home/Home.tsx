@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Locations } from "../../services/api/index.js";
+import { Locations } from "../../services/api/index";
 
 
 interface IUser {

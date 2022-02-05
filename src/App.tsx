@@ -9,7 +9,7 @@ import Auth from "./components/Auth/Auth";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "./features/user";
-import { AuthApi } from "./services/api/index.js";
+import { AuthApi } from "./services/api/index";
 
 
 interface IUser {

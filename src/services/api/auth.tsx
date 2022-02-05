@@ -6,7 +6,7 @@ const Auth = {
       const response = await get("/user");
       return response.data.user;
     } catch (error) {
-      return { error: error.message };
+      return error ;
     }
   },
 };
