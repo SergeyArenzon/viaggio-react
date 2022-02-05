@@ -1,15 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-
-import { useEffect } from "react";
-import PropTypes from 'prop-types';
-
-
-const labels = {
+const labels: Record<number,string> = {
   0.5: "Useless",
   1: "Useless+",
   1.5: "Poor",
@@ -30,36 +25,35 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StarsRating({currentRating}) {
-  StarsRating.propTypes = {
-    currentRating: PropTypes.number.isRequired,
-  };
+type StarsRatingProps = {
+  currentRating: number | null;
+};
 
-  const [value, setValue] = useState(currentRating);
-  const [hover, setHover] = useState(-1);
+const StarsRating = ({ currentRating }: StarsRatingProps): JSX.Element => {
+  const [value, setValue] = useState<number | null>(currentRating);
+  const [hover, setHover] = useState<number>(-1);
   const classes = useStyles();
-
-
+  const { id } = useParams();
 
   useEffect(() => {
     setValue(currentRating);
-  }, [currentRating])
+  }, [currentRating]);
 
   const onRatingClickHandler = async () => {
-    // const user = session.user;
-    const { id } = useParams;
-
-    const data = {  rating: value };
-
-    const res = await fetch(`/api/location/${id}/rating`, {
-      method: "PUT",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });    
+    const data = { rating: value };
+    const res = await fetch(
+      `${process.env.REACT_APP_API_URL}/location/${id}/rating`,
+      {
+        method: "PUT",
+        body: JSON.stringify(data),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
   };
- 
+
   return (
     <div className={classes.root}>
       <Rating
@@ -67,17 +61,19 @@ export default function StarsRating({currentRating}) {
         value={value}
         precision={0.5}
         onChange={(event, newValue) => {
-          setValue(newValue);
+          setValue(Number(newValue));
         }}
         onChangeActive={(event, newHover) => {
           setHover(newHover);
         }}
       />
       {value !== null && (
-        <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
+        <Box ml={2}>{labels[hover !== -1 ? (hover) : value]}</Box>
       )}
 
       <button onClick={onRatingClickHandler}>rate!</button>
     </div>
   );
-}
+};
+
+export default StarsRating;

@@ -1,26 +1,48 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { userSchema } from "../../validations/user";
 import { useSelector, useDispatch } from "react-redux";
-import { login, logout } from "./../../features/user";
+import { login, logout } from "../../features/user";
+
+
+interface IUser {
+  user: {
+    info: {
+      firstName: string,
+      lastName: string,
+      email: string,
+      _id: string,
+      date: string,
+    }
+  }
+}
+
 
 export default function Auth() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const lastNameRef = useRef();
-  const firstNameRef = useRef();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const lastNameRef = useRef<HTMLInputElement>(null);
+  const firstNameRef = useRef<HTMLInputElement>(null);
 
   const [loading, setLoading] = useState(true);
   const [signUpMode, setSignUpMode] = useState(true);
 
-  const user = useSelector((state) => state.user.value);
+  const user = useSelector((state: IUser) => state.user.info);
   const dispatch = useDispatch();
 
   /////////////////////
   //  Signout method //
   /////////////////////
-  const registerHandler = async (event) => {
+  const registerHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (
+      emailRef.current === null ||
+      passwordRef.current === null ||
+      firstNameRef.current === null ||
+      lastNameRef.current === null
+    ) {
+      return;
+    }
     const data = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -51,9 +73,15 @@ export default function Auth() {
   ////////////////////
   //  Signin method //
   ////////////////////
-  const loginHandler = async (event) => {
+  const loginHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (
+      emailRef.current === null ||
+      passwordRef.current === null
+    ) {
+      return;
+    }
     const data = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -68,9 +96,8 @@ export default function Auth() {
       },
     });
 
-
     const userData = await response.json();
-    dispatch(login(userData.user))
+    dispatch(login(userData.user));
   };
 
   const signUpForm = (
@@ -91,17 +118,19 @@ export default function Auth() {
     </form>
   );
 
+
   const logoutHandler = async () => {
     const request = `${process.env.REACT_APP_API_URL}/logout`;
-          console.log(request);
-          fetch(request, {
-            credentials: "include",
-          }).then((res) => console.log(res))
-    dispatch(logout())
-
-    
+    console.log(request);
+    fetch(request, {
+      credentials: "include",
+    }).then((res) => console.log(res));
+    dispatch(logout());
   };
 
+
+  console.log(user);
+  
   return (
     <div>
       <button
@@ -114,16 +143,11 @@ export default function Auth() {
         checkckkk
       </button>
 
-      <button
-        onClick={logoutHandler}
-      >
-        logout
-      </button>
+      <button onClick={logoutHandler}>logout</button>
       <button onClick={logoutHandler}>test</button>
 
       {signUpMode ? signUpForm : logInForm}
       <button onClick={() => setSignUpMode(!signUpMode)}>Switch</button>
-    
     </div>
   );
 }

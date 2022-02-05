@@ -1,22 +1,15 @@
 import GoogleMapReact from "google-map-react";
-import React from "react";
-import PropTypes from "prop-types";
 import markerSvg from "../../assets/images/google_maps_mark.svg";
 
 const { REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY } = process.env;
 
-export default function Map({ lat, lng }) {
-  Map.propTypes = {
-    lat: PropTypes.number.isRequired,
-    lng: PropTypes.number.isRequired,
-  };
 
-  console.log(lat, lng);
+const Map = ({ lat, lng})=> {
 
   return (
     <div style={{ height: "400px", width: "400px" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY }}
+        bootstrapURLKeys={{ key: REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY}}
         defaultCenter={{ lat, lng }}
         defaultZoom={11}
       >
@@ -26,8 +19,10 @@ export default function Map({ lat, lng }) {
           lng={lng}
           text="My Marker"
           alt="marker"
-        ></img>
+        />
       </GoogleMapReact>
     </div>
   );
 }
+
+export default Map;

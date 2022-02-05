@@ -9,26 +9,40 @@ import Auth from "./components/Auth/Auth";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "./features/user";
-import { AuthApi } from "./services/api/index.js";
+import { AuthApi } from "./services/api/index";
+
+
+interface IUser {
+  user: {
+    info: {
+      firstName: string,
+      lastName: string,
+      email: string,
+      _id: string,
+      date: string,
+    }
+  }
+}
 
 function App() {
-  const user = useSelector((state) => state.user.info);
+  const user = useSelector((state: IUser) => state.user.info);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getUser = async () => {
       const userInfo = await AuthApi.user();
-      if (!userInfo.error){
+      if (!userInfo.error) {
         dispatch(login(userInfo));
-      }  
+      }
     };
     getUser();
   }, []);
 
-  console.log(user);
+  
+  
   return (
-    <Layout>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth />} />
@@ -36,8 +50,8 @@ function App() {
           <Route path="/locations/:id" element={<ShowLocation />} />
           <Route path="/locations/:id/edit" element={<EditLocation />} />
         </Routes>
-      </BrowserRouter>
-    </Layout>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
