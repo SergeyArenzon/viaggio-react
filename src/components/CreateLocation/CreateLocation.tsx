@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ImagesUrlInput from "../ImagesUrlInput/ImagesUrlInput";
+import { Locations } from "../../services/api/index";
+
 
 const CreateLocation = () => {
   const [imageUrls, setImageUrls] = useState([]);
@@ -32,10 +34,10 @@ const CreateLocation = () => {
     const data = {
       name: nameRef.current.value,
       location: locationRef.current.value,
-      price: priceRef.current.value,
+      price: Number(priceRef.current.value),
       description: descriptionRef.current.value,
       images: imageUrls,
-      coordinate: [latRef.current.value, lngRef.current.value],
+      coordinate: [Number(latRef.current.value), Number(lngRef.current.value)],
     };
 
     // check for input validity
@@ -43,18 +45,12 @@ const CreateLocation = () => {
     const isValid: boolean = true;
 
     if (isValid) {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/location`,
-        {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
-      navigate("/");
+      try{
+        await Locations.create(data);
+        navigate("/");
+      } catch(error) {
+        console.log(error);
+      }
     }
   };
   return (
