@@ -3,6 +3,8 @@ import StarsRating from "../StarsRating/StarsRating";
 import ImageCarousel from "../UI/ImageCarousel/ImageCarousel";
 import Map from "../Map/Map";
 import { Link, useParams } from "react-router-dom";
+import { Locations as locationApi } from "../../services/api/index";
+
 
 interface Comment {
   title: string;
@@ -66,10 +68,6 @@ const ShowLocation = (): JSX.Element => {
 
   const onDeleteHandler = async () => {
     // check for created location user identity
-    // if (session.user.email !== locationData.email) {
-    //   alert("not the user");
-    //   return;
-    // }
     // const request = {
     //   method: "DELETE",
     //   headers: {
@@ -79,7 +77,11 @@ const ShowLocation = (): JSX.Element => {
     // const response = await fetch(`/api/location/${params.id}`, request);
     // const data = await response.json();
     // console.log(data);
-    // // router.replace("/");
+    if(params.id){
+      //  ************* FIX NEEDED *************
+      const x = await locationApi.delete(params.id) 
+    }
+    // router.replace("/");
   };
 
   const onCommentCreate = async (e: React.FormEvent<HTMLFormElement>) => {
