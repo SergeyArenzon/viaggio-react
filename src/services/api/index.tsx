@@ -1,7 +1,8 @@
 import Locations from "./locations";
+import CommentApi from "./comment";
 import AuthApi from "./auth";
 
-export { Locations, AuthApi };
+export { Locations, AuthApi, CommentApi  };
 
 
 // export const Users = {

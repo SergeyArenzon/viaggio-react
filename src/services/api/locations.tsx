@@ -28,9 +28,13 @@ const Locations = {
   },
 
   delete: async (id: string) => {
-    const response = await destroy(`${process.env.REACT_APP_API_URL}/location/${id}`);
-    // const data = await response.json();
-    console.log(response);
+    try {
+      const response = await destroy(`${process.env.REACT_APP_API_URL}/location/${id}`);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return(error);
+    }
   }
 };
 export default Locations;
