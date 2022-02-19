@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import StarsRating from "../StarsRating/StarsRating";
 import ImageCarousel from "../UI/ImageCarousel/ImageCarousel";
 import Map from "../Map/Map";
-import { Link, useParams } from "react-router-dom";
-import { Locations as locationApi } from "../../services/api/index";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { Locations as locationApi, CommentApi } from "../../services/api/index";
 
 
 interface Comment {
@@ -28,6 +28,8 @@ const ShowLocation = (): JSX.Element => {
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLInputElement>(null);
   const params = useParams();
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -67,25 +69,18 @@ const ShowLocation = (): JSX.Element => {
   }, []);
 
   const onDeleteHandler = async () => {
-    // check for created location user identity
-    // const request = {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-    // const response = await fetch(`/api/location/${params.id}`, request);
-    // const data = await response.json();
-    // console.log(data);
     if(params.id){
-      //  ************* FIX NEEDED *************
-      const x = await locationApi.delete(params.id) 
+      const response: any = await locationApi.delete(params.id) 
+      if(response.status === 200) {
+        navigate("/");
+      }
     }
-    // router.replace("/");
+    return;
   };
 
   const onCommentCreate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
 
     let title: string = "";
     let body: string = "";
@@ -111,8 +106,14 @@ const ShowLocation = (): JSX.Element => {
         "Content-Type": "application/json",
       },
     };
-    const response = await fetch(`/api/location/${params.id}/comment`, request);
-    console.log(response);
+
+    if(params.id) {
+      const response = await CommentApi.post(params.id, data);
+      console.log(response);
+      
+    }
+  
+   
     // router.reload();
   };
 
