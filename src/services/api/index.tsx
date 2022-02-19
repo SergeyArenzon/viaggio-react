@@ -1,8 +1,9 @@
 import Locations from "./locations";
 import CommentApi from "./comment";
+import RatingApi from "./rating";
 import AuthApi from "./auth";
 
-export { Locations, AuthApi, CommentApi  };
+export { Locations, AuthApi, CommentApi, RatingApi  };
 
 
 // export const Users = {

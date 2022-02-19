@@ -3,6 +3,7 @@ import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { RatingApi } from '../../services/api/index';
 
 const labels: Record<number,string> = {
   0.5: "Useless",
@@ -40,18 +41,12 @@ const StarsRating = ({ currentRating }: StarsRatingProps): JSX.Element => {
   }, [currentRating]);
 
   const onRatingClickHandler = async () => {
-    const data = { rating: value };
-    const res = await fetch(
-      `${process.env.REACT_APP_API_URL}/location/${id}/rating`,
-      {
-        method: "PUT",
-        body: JSON.stringify(data),
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const data = { rating: Number(value) };
+    if(!id){
+      return
+    }
+    const res = await RatingApi.update(id, data);
+    
   };
 
   return (

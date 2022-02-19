@@ -33,25 +33,25 @@ const ShowLocation = (): JSX.Element => {
 
   useEffect(() => {
     const fetchLocation = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/location/${params.id}`
-      );
-      const data = await response.json();
+      if(!params.id){
+        return;
+      }
+      const location = await locationApi.getOne(params.id);
 
-      setLocationData(data.location);
+      setLocationData(location);
 
       let sumOfRatings = 0;
-      console.log(data);
-      if (data.location.ratings.length === 0) {
+
+      if (location.ratings.length === 0) {
         setAvgRating(0);
       } else {
-        data.location.ratings.forEach(
+        location.ratings.forEach(
           (ratingObj: { user: string; rating: number; _id: string }) => {
             sumOfRatings += ratingObj.rating;
           }
         );
         const calculatedAvgRating =
-          Math.round((sumOfRatings / data.location.ratings.length) * 2) / 2;
+          Math.round((sumOfRatings / location.ratings.length) * 2) / 2;
         setAvgRating(calculatedAvgRating);
       }
     };
@@ -59,11 +59,11 @@ const ShowLocation = (): JSX.Element => {
     fetchLocation();
 
     const fetchComments = async () => {
-      const commentsResponse = await fetch(
-        `${process.env.REACT_APP_API_URL}/location/${params.id}/comment`
-      );
-      const commentsData = await commentsResponse.json();
-      setComment(commentsData.comments);
+      if(!params.id){
+        return;
+      }
+      const commentsResponse = await CommentApi.getAll(params.id);
+      setComment(commentsResponse);
     };
     fetchComments();
   }, []);
@@ -99,22 +99,13 @@ const ShowLocation = (): JSX.Element => {
       body,
     };
 
-    const request = {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
 
     if(params.id) {
       const response = await CommentApi.post(params.id, data);
       console.log(response);
       
     }
-  
-   
-    // router.reload();
+ 
   };
 
   if (!locationData) {

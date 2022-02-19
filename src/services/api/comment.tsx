@@ -9,6 +9,14 @@ const Comment = {
           return  error ;
         }
       },
+      getAll: async (locationId: string) => {
+        try {
+          const response = await get(`${process.env.REACT_APP_API_URL}/location/${locationId}/comment`);
+          return response.data.comments
+        } catch (error) {
+          return  error ;
+        }
+      },
 }
 
 export default Comment;

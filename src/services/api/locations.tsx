@@ -9,6 +9,14 @@ const Locations = {
       return { error };
     }
   },
+  getOne: async (locationId: string) => {
+    try {
+      const response = await get(`${process.env.REACT_APP_API_URL}/location/${locationId}`);
+      return response.data.location;
+    } catch (error) {
+      return { error };
+    }
+  },
   create: async (
     data: { 
       name: string,

@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { userSchema } from "../../validations/user";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../../features/user";
+import { AuthApi } from '../../services/api/index';
+import { useNavigate } from 'react-router-dom';
 
 
 interface IUser {
@@ -29,6 +31,8 @@ export default function Auth() {
   const user = useSelector((state: IUser) => state.user.info);
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   /////////////////////
   //  Signout method //
   /////////////////////
@@ -55,18 +59,9 @@ export default function Auth() {
       alert("Creds isnt valid!");
       return;
     }
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
+    const response: any = await AuthApi.register(data);
     if (response.status === 201) {
-      // router.replace('/');
-      const res = await response.json();
-      return res;
+      navigate('/');
     }
   };
 
@@ -87,17 +82,8 @@ export default function Auth() {
       password: passwordRef.current.value,
     };
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
-      method: "POST",
-      body: JSON.stringify(data),
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const userData = await response.json();
-    dispatch(login(userData.user));
+    const response: any = await AuthApi.login(data);
+    dispatch(login(response.data.user));
   };
 
   const signUpForm = (
@@ -120,16 +106,10 @@ export default function Auth() {
 
 
   const logoutHandler = async () => {
-    const request = `${process.env.REACT_APP_API_URL}/logout`;
-    console.log(request);
-    fetch(request, {
-      credentials: "include",
-    }).then((res) => console.log(res));
+    const request = AuthApi.logout();;
     dispatch(logout());
   };
 
-
-  console.log(user);
   
   return (
     <div>
