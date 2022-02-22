@@ -43,6 +43,21 @@ const Locations = {
       console.log(error);
       return(error);
     }
-  }
+  },
+  edit: async (id: string, body: { 
+    name: string,
+    location: string,
+    price: string,
+    description: string,
+  }) => {
+    try {
+      const response = await put(`${process.env.REACT_APP_API_URL}/location/${id}/edit`, body);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return(error);
+    }
+  },
+  
 };
 export default Locations;

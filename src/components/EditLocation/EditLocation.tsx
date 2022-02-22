@@ -4,6 +4,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
+import { Locations } from '../../services/api/index'
 
 interface Location {
   price: string, 
@@ -27,12 +28,12 @@ const EditLocation = () => {
   const [locationData, setLocationData] = useState<Location | null>(null);
 
   useEffect(() => {
+    if(!id){
+      return;
+    }
     const fetchLocation = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/location/${id}`
-      );
-      const data = await response.json();
-      setLocationData(data.location);
+      const location = await Locations.getOne(id);
+      setLocationData(location);
     };
 
     fetchLocation();
@@ -44,29 +45,22 @@ const EditLocation = () => {
     //     alert("Wrong user!")
     //     return;
     // }
+    if(!id){
+      return;
+    }
 
     if(nameRef.current === null || locationRef.current === null || priceRef.current === null || descriptionRef.current === null){
       return;
     }
-    const body = JSON.stringify({
+    const body = {
         name: nameRef.current.value,
         location: locationRef.current.value,
         price: priceRef.current.value,
         description: descriptionRef.current.value,
-    })
+    };
 
-    fetch(`${process.env.REACT_APP_API_URL}/location/${id}/edit`, 
-    {
-        headers: {
 
-            'Accept': 'application/json',
-            'Content-type': 'application/json',
-        
-          }, 
-        method: "PUT",  
-        body: body
-    }
-        );
+    await Locations.edit(id, body)
   };
 
   if (!locationData) {

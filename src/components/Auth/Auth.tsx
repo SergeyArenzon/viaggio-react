@@ -114,11 +114,7 @@ export default function Auth() {
   return (
     <div>
       <button
-        onClick={() => {
-          fetch(`${process.env.REACT_APP_API_URL}/user`, {
-            credentials: "include",
-          });
-        }}
+        onClick={() =>  AuthApi.user()}
       >
         checkckkk
       </button>
