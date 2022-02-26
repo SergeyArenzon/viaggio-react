@@ -83,7 +83,10 @@ export default function Auth() {
     };
 
     const response: any = await AuthApi.login(data);
-    dispatch(login(response.data.user));
+    if(response.status === 200){
+      dispatch(login(response.data.user));
+      navigate('/');
+    }
   };
 
   const signUpForm = (

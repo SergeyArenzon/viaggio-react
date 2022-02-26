@@ -2,8 +2,9 @@
 // Edit view location
 // //////////////////
 
+import { AxiosResponse } from "axios";
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Locations } from '../../services/api/index'
 
 interface Location {
@@ -23,6 +24,7 @@ const EditLocation = () => {
   const priceRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
 
   const [locationData, setLocationData] = useState<Location | null>(null);
@@ -60,7 +62,10 @@ const EditLocation = () => {
     };
 
 
-    await Locations.edit(id, body)
+    const response: any = await Locations.edit(id, body);
+    if(response.status === 200){
+      navigate(`/locations/${id}`);
+    }
   };
 
   if (!locationData) {
