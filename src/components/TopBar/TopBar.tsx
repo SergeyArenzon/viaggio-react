@@ -24,24 +24,24 @@ export default function TopBar() : JSX.Element {
   
 
   return (
-    <nav>
-      <ul className="flex bg-gray-800 justify-between">
+    <nav className="bg-teal-600">
+      <ul className="flex justify-between">
         <li>
           <Link to="/">
-            <div className="text-white">HOME</div>
+            <div className="text-black">HOME</div>
           </Link>
         </li>
         <li>
           <Link to="/profile">
-            <div className="text-white">PROFILE</div>
+            <div className="text-black">PROFILE</div>
           </Link>
         </li>
 
         <Link to="/auth">
-          <div className="text-white">Login</div>
+          <div className="text-black">Login</div>
         </Link>
         <li>
-          {user && `${user.firstName} ${user.lastName}` }
+          {user && <div className="text-black">{user.firstName} {user.lastName}</div>}
         </li>
       </ul>
     </nav>
