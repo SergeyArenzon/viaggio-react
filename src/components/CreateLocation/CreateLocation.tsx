@@ -5,7 +5,7 @@ import { Locations } from "../../services/api/index";
 
 
 const CreateLocation = () => {
-  const [imageUrls, setImageUrls] = useState([]);
+  const [images, setImages] = useState<FormData[]>([]);
   const nameRef = useRef<HTMLInputElement>(null);
   const locationRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
@@ -31,12 +31,14 @@ const CreateLocation = () => {
       return;
     }
 
+    console.log(images);
+    
     const data = {
       name: nameRef.current.value,
       location: locationRef.current.value,
       price: Number(priceRef.current.value),
       description: descriptionRef.current.value,
-      images: imageUrls,
+      images: images,
       coordinate: [Number(latRef.current.value), Number(lngRef.current.value)],
     };
 
@@ -53,6 +55,28 @@ const CreateLocation = () => {
       }
     }
   };
+
+
+  const imagesInputHandler = (e: any) => {
+    // console.log(e.target.files);
+    const imagesList = e.target.files;
+    const formDataList : FormData[] = []
+    
+    for (const key in imagesList) {
+      if (Object.prototype.hasOwnProperty.call(imagesList, key)) {
+        const element = imagesList[key];
+        const formData = new FormData();
+        formData.append("image", element);
+        formDataList.push(formData);
+      }
+    }
+
+    setImages(formDataList);
+  }
+
+
+  console.log(images);
+  
   return (
     <form onSubmit={submitHandler}>
       <h1>Create New Location</h1>
@@ -64,7 +88,7 @@ const CreateLocation = () => {
       <input type="number" ref={priceRef}></input>
       <div>Description</div>
       <textarea ref={descriptionRef}></textarea>
-      <ImagesUrlInput imageUrls={imageUrls} setImageUrls={setImageUrls} />
+      <input type="file" onChange={imagesInputHandler} multiple></input>
       <input
         type="number"
         step="0.000001"

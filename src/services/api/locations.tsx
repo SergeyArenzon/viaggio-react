@@ -1,5 +1,6 @@
 import { get, post, put, destroy } from "./config";
 
+
 const Locations = {
   index: async () => {
     try {
@@ -23,7 +24,7 @@ const Locations = {
       location: string,
       price: number,
       description: string,
-      images: string[],
+      images: FormData[],
       coordinate: number[]
   }) => {
     try{
