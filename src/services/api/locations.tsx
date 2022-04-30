@@ -24,7 +24,6 @@ const Locations = {
       location: string,
       price: number,
       description: string,
-      images: FormData[],
       coordinate: number[]
   }) => {
     try{
@@ -53,6 +52,24 @@ const Locations = {
   }) => {
     try {
       const response = await put(`${process.env.REACT_APP_API_URL}/location/${id}/edit`, body);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return(error);
+    }
+  },
+  uploadImage: async (id: string, images: FormData) => {
+    try {
+      const response = await post(`${process.env.REACT_APP_API_URL}/location/${id}/upload`, images);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return(error);
+    }
+  },
+  getImage: async ( image: string) => {
+    try {
+      const response = await get(`${process.env.REACT_APP_API_URL}/location/${image}/updownload`);
       return response;
     } catch (error) {
       console.log(error);
