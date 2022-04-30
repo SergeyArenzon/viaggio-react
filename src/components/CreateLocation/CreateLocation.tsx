@@ -5,7 +5,7 @@ import { Locations } from "../../services/api/index";
 
 
 const CreateLocation = () => {
-  const [images, setImages] = useState<FormData[]>([]);
+  const [images, setImages] = useState<File[]>([]);
   const nameRef = useRef<HTMLInputElement>(null);
   const locationRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
@@ -38,7 +38,6 @@ const CreateLocation = () => {
       location: locationRef.current.value,
       price: Number(priceRef.current.value),
       description: descriptionRef.current.value,
-      images: images,
       coordinate: [Number(latRef.current.value), Number(lngRef.current.value)],
     };
 
@@ -48,7 +47,15 @@ const CreateLocation = () => {
 
     if (isValid) {
       try{
-        await Locations.create(data);
+        const location = await Locations.create(data);
+        if(images.length > 0){
+          const formData = new FormData();
+          [...images].forEach(image => {
+            formData.append("image", image);
+          });
+  
+          Locations.uploadImage(location.data.response._id, formData);
+        }
         navigate("/");
       } catch(error) {
         console.log(error);
@@ -58,24 +65,9 @@ const CreateLocation = () => {
 
 
   const imagesInputHandler = (e: any) => {
-    // console.log(e.target.files);
     const imagesList = e.target.files;
-    const formDataList : FormData[] = []
-    
-    for (const key in imagesList) {
-      if (Object.prototype.hasOwnProperty.call(imagesList, key)) {
-        const element = imagesList[key];
-        const formData = new FormData();
-        formData.append("image", element);
-        formDataList.push(formData);
-      }
-    }
-
-    setImages(formDataList);
+    setImages(imagesList);
   }
-
-
-  console.log(images);
   
   return (
     <form onSubmit={submitHandler}>
