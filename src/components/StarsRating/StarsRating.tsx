@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { RatingApi } from '../../services/api/index';
 
@@ -41,6 +41,7 @@ const StarsRating = ({ currentRating }: StarsRatingProps): JSX.Element => {
   }, [currentRating]);
 
   const onRatingClickHandler = async () => {
+    
     const data = { rating: Number(value) };
     if(!id){
       return
