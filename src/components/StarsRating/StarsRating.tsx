@@ -41,7 +41,6 @@ const StarsRating = ({ currentRating }: StarsRatingProps): JSX.Element => {
   }, [currentRating]);
 
   const onRatingClickHandler = async () => {
-    console.log("----",value);
     
     const data = { rating: Number(value) };
     if(!id){
@@ -58,7 +57,6 @@ const StarsRating = ({ currentRating }: StarsRatingProps): JSX.Element => {
         value={value}
         precision={0.5}
         onChange={(event, newValue) => {
-          console.log((newValue));
           setValue(Number(newValue));
         }}
         onChangeActive={(event, newHover) => {
