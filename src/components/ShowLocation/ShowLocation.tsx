@@ -156,7 +156,10 @@ const ShowLocation = (): JSX.Element => {
         <input type="text" placeholder="body" ref={bodyRef}></input>
         <button>Submit</button>
       </form>
-      <StarsRating currentRating={avgRating} />
+      {/* <div className="mb-5"> */}
+
+        <StarsRating  currentRating={avgRating} />
+      {/* </div> */}
       {locationData.images.length > 0 && (
         <ImageCarousel images={locationData.images} />
       )}
