@@ -17,7 +17,8 @@ interface Location {
   description: string,
   location: string,
   name: string,
-  images: []
+  images: [],
+  avarageRating: number
   
 }
 
@@ -39,21 +40,6 @@ const ShowLocation = (): JSX.Element => {
       const location = await locationApi.getOne(params.id);
 
       setLocationData(location);
-
-      let sumOfRatings = 0;
-
-      if (location.ratings.length === 0) {
-        setAvgRating(0);
-      } else {
-        location.ratings.forEach(
-          (ratingObj: { user: string; rating: number; _id: string }) => {
-            sumOfRatings += ratingObj.rating;
-          }
-        );
-        const calculatedAvgRating =
-          Math.round((sumOfRatings / location.ratings.length) * 2) / 2;
-        setAvgRating(calculatedAvgRating);
-      }
     };
 
     fetchLocation();
@@ -158,7 +144,7 @@ const ShowLocation = (): JSX.Element => {
       </form>
       {/* <div className="mb-5"> */}
 
-        <StarsRating  currentRating={avgRating} />
+        <StarsRating  currentRating={locationData.avarageRating} />
       {/* </div> */}
       {locationData.images.length > 0 && (
         <ImageCarousel images={locationData.images} />
