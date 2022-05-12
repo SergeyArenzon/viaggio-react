@@ -1,4 +1,4 @@
-import React from "react";
+import './TopBar.scss';
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -24,8 +24,8 @@ export default function TopBar() : JSX.Element {
   
 
   return (
-    <nav className="bg-teal-600">
-      <ul className="flex justify-between">
+    <nav className="topbar">
+      <ul>
         <li>
           <Link to="/">
             <div className="text-black">HOME</div>
