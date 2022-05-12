@@ -1,5 +1,5 @@
 
-import { GoogleMap, useJsApiLoader,Marker } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker, StreetViewService } from '@react-google-maps/api';
 import React from 'react'
 
 const { REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY } = process.env;
@@ -11,9 +11,6 @@ type MapProprs = {
 }
 
 const Map = ({ lat, lng}: MapProprs)=> {
-
-
-
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: REACT_APP_PUBLIC_GOOGLE_MAPS_API_KEY!
@@ -37,6 +34,8 @@ const Map = ({ lat, lng}: MapProprs)=> {
     setMap(map)
   }, [])
 
+
+  
 
   const onUnmount = React.useCallback(function callback(map: any) {
     setMap(null)
