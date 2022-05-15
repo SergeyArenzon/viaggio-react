@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Locations } from "../../services/api/index";
+import x from "../../assets/images/google_maps_mark.svg"
 import './Home.scss';
 
 
@@ -22,7 +23,7 @@ interface ILocation {
   description: string,
   location: string,
   name: string,
-  images: [],
+  images: string[],
   id: string
   
 }
@@ -39,14 +40,18 @@ export default function Home() {
     getLocations();
   }, []);
 
+  // console.log(locations);
+  
+
   const locationsList = (
     <ul className="locations-container">
       {locations &&
         locations.map((location: ILocation, index) => {
+          let image = location.images.length > 0 ? `${ process.env.REACT_APP_API_URL}/location/${location.images[0]}/download` : x
           return (
             <li className="location" key={location.name + index}>
 
-              <img className="location__image"/>
+              <img className="location__image" src={image} alt="location" />
               <div className="location__info">
                 <div className="location__name">
                   {location.name}
