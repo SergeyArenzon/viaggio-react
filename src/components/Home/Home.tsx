@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Locations } from "../../services/api/index";
-import axios from 'axios';
+import './Home.scss';
 
 
 interface IUser {
@@ -40,18 +40,25 @@ export default function Home() {
   }, []);
 
   const locationsList = (
-    <ul>
+    <ul className="locations-container">
       {locations &&
         locations.map((location: ILocation, index) => {
           return (
-            <li key={location.name + index}>
-              <div className="text-center text-lg font-bold">
-                {location.name}
+            <li className="location" key={location.name + index}>
+
+              <img className="location__image"/>
+              <div className="location__info">
+                <div className="location__name">
+                  {location.name}
+                </div>
+                <div className="location__location">location: {location.location}</div>
+                <p className="location__description">{location.description}</p>
+                <div className="location__price">${location.price}</div>
+                <div className="location__show">
+
+                  <Link to={`/locations/${location.id}`}>SHOW</Link>
+                </div>
               </div>
-              <div>location: {location.location}</div>
-              <div>description: {location.description}</div>
-              <div>price: {location.price}</div>
-              <Link to={`/locations/${location.id}`}>Info</Link>
             </li>
           );
         })}
@@ -59,34 +66,11 @@ export default function Home() {
   );
 
 
-  // const x = (file: any) => {
-
-  //   const formData = new FormData();
-    
-  //   formData.append('image', file);
-  //   console.log(formData,formData);
-
-  //   axios.post('http://localhost:5000/s3/upload', formData)
-  //   // fetch('http://localhost:5000/s3/upload',{
-  //   //   method: 'POST',
-  //   //   body: formData,
-  //   //   headers: { 'Content-Type': 'multipart/form-data'},
-  //   // });
-  // }
-
   return (
-    <div className="px-20 flex flex-col items-center ">
-      <div className="text-center text-green-800 text-5xl mb-10">
-        Traveling Locations
-      </div>
+    <div className="home">
+      <div className="">Traveling Locations</div>
       {locationsList}
       <Link to="/new-location">Create New Location</Link>
-      {/* <input type="file" onChange={(e:any) => {
-        if(e.target.files[0]){
-
-          x(e.target.files[0])
-        }
-      }}></input> */}
     </div>
   );
 }
