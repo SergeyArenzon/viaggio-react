@@ -1,6 +1,7 @@
 import './TopBar.scss';
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import BorderedButton from '../UI/BorderedButton/BorderedButton';
 
 
 
@@ -25,6 +26,8 @@ export default function TopBar() : JSX.Element {
 
   return (
     <nav className="topbar">
+
+      <div>LOGO</div>
       <ul>
         <li>
           <Link to="/">
@@ -36,14 +39,15 @@ export default function TopBar() : JSX.Element {
             <div className="text-black">PROFILE</div>
           </Link>
         </li>
-
-        <Link to="/auth">
-          <div className="text-black">Login</div>
-        </Link>
         <li>
           {user && <div className="text-black">{user.firstName} {user.lastName}</div>}
         </li>
       </ul>
+      <div>
+        <Link to="/auth">
+          <BorderedButton>Login</BorderedButton>
+        </Link>
+      </div>
     </nav>
   );
 }

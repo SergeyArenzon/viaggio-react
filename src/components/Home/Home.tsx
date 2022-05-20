@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Locations } from "../../services/api/index";
-import x from "../../assets/images/google_maps_mark.svg"
+import noBackground from "../../assets/images/no-background.jpg"
 import './Home.scss';
 
 
@@ -47,11 +47,11 @@ export default function Home() {
     <ul className="locations-container">
       {locations &&
         locations.map((location: ILocation, index) => {
-          let image = location.images.length > 0 ? `${ process.env.REACT_APP_API_URL}/location/${location.images[0]}/download` : x
+          let image = location.images.length > 0 ? `${ process.env.REACT_APP_API_URL}/location/${location.images[0]}/download` : noBackground
           return (
             <li className="location" key={location.name + index}>
 
-              <img className="location__image" src={image} alt="location" />
+              <img className={`location__image ${location.images.length === 0 ? "location__image--empty" : ""}`} src={image} alt="location" />
               <div className="location__info">
                 <div className="location__name">
                   {location.name}

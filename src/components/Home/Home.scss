@@ -37,6 +37,10 @@
         filter: contrast(80%);
         transition: all .2s linear;
 
+        &--empty {
+            object-fit: none;
+        }
+
     }
 
     &__name {
@@ -55,6 +59,7 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        transition: all .2s ease-out;
 
         &:hover {
             background-color: $mainGreen;
@@ -65,7 +70,9 @@
         a:active, a:visited, a:-webkit-any-link {
             text-decoration: none;
             color: inherit;
-
+            height: 100%;
+            width: 100%;
+            text-align: center;
         }
 
 
