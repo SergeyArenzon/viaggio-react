@@ -72,22 +72,25 @@ export default function Home() {
     </ul>
   );
 
+  
 
   return (
     <div className="home">
       <div className="intro">
         <p>
           <strong>Share</strong> Your<br/> <strong>Traveling</strong><br/> Locations<strong>.</strong>
-          <Link to="/new-location">
-              <div className="intro__share">
-                <BorderedButtom>Share Location</BorderedButtom>
-              </div>
-          </Link>
+          <div className="intro__share">
+            <Link to="/new-location">
+                  <BorderedButtom>Share Location</BorderedButtom>
+            </Link>
+          </div>
         </p>
         <img src={travelingImg}/>
       </div>
-      <div className="">Traveling Locations</div>
-      {locationsList}
+      <div className="locations-container">
+
+        {locationsList}
+      </div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import './TopBar.scss';
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import BorderedButton from '../UI/BorderedButton/BorderedButton';
 
@@ -22,7 +22,7 @@ export default function TopBar() : JSX.Element {
 
   const user = useSelector((state: IUser) => state.user.info);
   
-  
+  const location = useLocation();
 
   return (
     <nav className="topbar">
@@ -30,14 +30,14 @@ export default function TopBar() : JSX.Element {
       <div>LOGO</div>
       <ul className="topbar__items">
         <li>
-          <Link to="/">
+          <NavLink to="/" style={({ isActive }) => isActive ? {color: "#5F7161"} : {}}>
             <div className="text-black">HOME</div>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/profile">
+          <NavLink to="/profile" style={({ isActive }) => isActive ? {color: "#5F7161"} : {}}>
             <div className="text-black">PROFILE</div>
-          </Link>
+          </NavLink>
         </li>
         <li>
           TEST
@@ -47,9 +47,9 @@ export default function TopBar() : JSX.Element {
         </li>
       </ul>
       <div>
-        <Link className="topbar__login" to="/auth" >
+        <NavLink className="topbar__login" to="/auth" style={({ isActive }) => isActive ? {color: "#5F7161"} : {}}>
           <BorderedButton>Login</BorderedButton>
-        </Link>
+        </NavLink>
       </div>
     </nav>
   );

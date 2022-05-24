@@ -53,8 +53,8 @@
         }
 
 
-        li:active, li:visited{
-            color: inherit;
+        li:active, li:visited {
+            color: $mainGreen;
             text-decoration: none;
         }
     }
