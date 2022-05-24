@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { Locations } from "../../services/api/index";
 import noBackground from "../../assets/images/no-background.jpg"
 import './Home.scss';
+import travelingImg from '../../assets/images/traveling.svg';
+import BorderedButtom from './../UI/BorderedButton/BorderedButton';
 
 
 interface IUser {
@@ -73,9 +75,19 @@ export default function Home() {
 
   return (
     <div className="home">
+      <div className="intro">
+        <p>
+          <strong>Share</strong> Your<br/> <strong>Traveling</strong><br/> Locations<strong>.</strong>
+          <Link to="/new-location">
+              <div className="intro__share">
+                <BorderedButtom>Share Location</BorderedButtom>
+              </div>
+          </Link>
+        </p>
+        <img src={travelingImg}/>
+      </div>
       <div className="">Traveling Locations</div>
       {locationsList}
-      <Link to="/new-location">Create New Location</Link>
     </div>
   );
 }

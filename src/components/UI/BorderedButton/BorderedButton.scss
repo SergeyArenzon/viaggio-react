@@ -4,6 +4,17 @@
     border: 2px solid $mainGreen;
     height: 100%;
     width: 100%;
-    border-radius: 15px;
+    border-radius: 5px;
     color: $mainGreen;
+    transition: all 0.2s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Montserrat-bold;
+
+    &:hover {
+        background-color: $mainGreen;
+        color: white;
+        transition: all 0.2s linear;
+    }
 }

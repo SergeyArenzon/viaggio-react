@@ -28,7 +28,7 @@ export default function TopBar() : JSX.Element {
     <nav className="topbar">
 
       <div>LOGO</div>
-      <ul>
+      <ul className="topbar__items">
         <li>
           <Link to="/">
             <div className="text-black">HOME</div>
@@ -40,11 +40,14 @@ export default function TopBar() : JSX.Element {
           </Link>
         </li>
         <li>
+          TEST
+        </li>
+        <li>
           {user && <div className="text-black">{user.firstName} {user.lastName}</div>}
         </li>
       </ul>
       <div>
-        <Link to="/auth">
+        <Link className="topbar__login" to="/auth" >
           <BorderedButton>Login</BorderedButton>
         </Link>
       </div>
