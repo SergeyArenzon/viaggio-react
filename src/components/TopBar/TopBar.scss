@@ -7,14 +7,64 @@
     border-bottom: 1px $viaggioGray solid;
     display: flex;
     justify-content: space-between;
-    ul {
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: white;
+    padding: 0 20px;
+    
+    &__items { 
         display: flex;
         list-style-type: none;
+        color: $viaggioGray;
+        margin-left: auto;
+        
+        
+        li {
+            margin-right: 10px;
+            cursor: pointer;
+            position: relative;
+            
+            &:last-child {
+                margin-right: 30px;
+            }
+
+            &::after {
+                content: "";
+                bottom: 0;
+                left: 0;
+                height: 3px;
+                width: 0;
+                background-color: $mainGreen;
+                position: absolute;
+                border-radius: 10px;
+
+            }
+
+            &:hover {
+                color: $mainGreen;
+                transition: width 0.3s ease-in;         
+                &::after {
+                    width: 100%;
+                    transition: width 0.3s ease-in;         
+                }
+            }
+        }
 
 
-        li:active, li:visited{
-            color: inherit;
+        li:active, li:visited {
+            color: $mainGreen;
             text-decoration: none;
         }
+    }
+    &__login {
+        width: 100px;
+        display: flex;
+        text-align: center;
+        height: 30px;
+        justify-content: center;
+        align-items: center;
+
     }
 }
