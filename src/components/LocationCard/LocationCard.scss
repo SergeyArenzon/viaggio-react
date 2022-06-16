@@ -12,6 +12,11 @@
     display: flex;
     flex-direction: column;
 
+    &__title {
+        color: gray;
+        font-family: $viaggioFontBold;
+    }
+
     &:hover {
 
         .location__image {

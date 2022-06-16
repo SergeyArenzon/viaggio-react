@@ -19,7 +19,7 @@
         p {
             font-size: 8vmin;
             color: $viaggioGray;
-            font-family: Montserrat-bold;
+            font-family: $viaggioFontBold;
             
             strong {
                 color: $mainGreen;
@@ -36,12 +36,8 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 12px;
-    
-    }
-    
-   
-
-    .locations-container {
         margin-top: 50px;
-    }
+        list-style: none;
+    
+    }   
 }
