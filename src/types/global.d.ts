@@ -15,6 +15,7 @@ declare global {
     name: string,
     images: string[],
     id: string,
+    avarageRating: number
   }
   interface IUser {
     user: {
