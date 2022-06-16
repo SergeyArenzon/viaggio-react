@@ -16,4 +16,16 @@ declare global {
     images: string[],
     id: string,
   }
+  interface IUser {
+    user: {
+      info: {
+        firstName: string,
+        lastName: string,
+        email: string,
+        _id: string,
+        date: string,
+      }
+    }
+  }
+  
 }
