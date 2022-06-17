@@ -15,7 +15,8 @@ declare global {
     name: string,
     images: string[],
     id: string,
-    avarageRating: number
+    avarageRating: number,
+    ratings: [IRating]
   }
   interface IUser {
     user: {
@@ -27,6 +28,10 @@ declare global {
         date: string,
       }
     }
+  }
+  interface IRating {
+    rating: number,
+    id: string
   }
   
 }

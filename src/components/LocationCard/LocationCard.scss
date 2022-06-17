@@ -12,6 +12,17 @@
     display: flex;
     flex-direction: column;
 
+    &__rating {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5px;
+    }
+
+    &__price-per-night {
+        font-size: 10px;
+    }
+
     &__title {
         color: gray;
         font-family: $viaggioFontBold;
