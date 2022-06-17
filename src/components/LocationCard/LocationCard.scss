@@ -63,6 +63,7 @@
     }
     &__description {
         margin: 10px 0;
+        font-family: $viaggioFontItalic;
 
     }
     &__show {
@@ -75,6 +76,7 @@
         cursor: pointer;
         transition: all .2s ease-out;
         margin-top: auto;
+        font-family: $viaggioFontBold;
        
 
         &:hover {
@@ -87,6 +89,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: inherit;
         }
         a:active, a:visited, a:-webkit-any-link {
             text-decoration: none;

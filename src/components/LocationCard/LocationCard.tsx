@@ -13,7 +13,7 @@ export default function LocationCard({ location }: {location: ILocation}) {
         <img className={`location__image ${location.images.length === 0 ? "location__image--empty" : ""}`} src={image} alt="location" />
         {location?.ratings.length > 0 && <div className='location__rating'>
           <Rating name="read only" value={location?.avarageRating} readOnly/>
-          <span>({location.ratings.length}) Raters</span>
+          <span>({location.ratings.length})</span>
         </div>}
         <div className="location__info">
         <div className="location__name location__title">{location.name}</div>
