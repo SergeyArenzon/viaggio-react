@@ -75,27 +75,34 @@ export default function Auth() {
 
   const signUpForm = (
     <form onSubmit={registerHandler}>
-      <div>
+      <div className="auth__input-container">
+        <div className="auth__input-label">First Name</div>
         <Input type="text" setState={setFirstName}/>
-        {/* <input type="text" ref={firstNameRef}></input> */}
       </div>
-      <div>
+      <div className="auth__input-container">
+        <div className="auth__input-label">Last Name</div>
         <Input type="text" setState={setLastName}/>
       </div>
-      <div>
+      <div className="auth__input-container">
+        <div className="auth__input-label">Email</div>
         <Input type="email" setState={setEmail}/>
       </div>
-      <div>
+      <div className="auth__input-container">
+        <div className="auth__input-label">Password</div>
         <Input type="password" setState={setPassword}/>
       </div>
-      <button>register</button>
+      <button className="auth__input-label">register</button>
     </form>
   );
 
   const logInForm = (
     <form onSubmit={loginHandler}>
-      {/* <input type="email" ref={emailRef}></input>
-      <input type="password" ref={passwordRef}></input> */}
+     <div>
+        <Input type="email" setState={setEmail}/>
+      </div>
+      <div>
+        <Input type="password" setState={setPassword}/>
+      </div>
       <button>login</button>
     </form>
   );
