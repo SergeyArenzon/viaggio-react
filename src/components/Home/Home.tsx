@@ -53,7 +53,7 @@ export default function Home() {
             </Link>
           </div>
         </p>
-        <img src={travelingImg}/>
+        {/* <img src={travelingImg}/> */}
       </div>
       <div className="locations-container">
 

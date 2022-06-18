@@ -1,13 +1,18 @@
 @import '../../sass/variables';
 .home {
+    position: absolute;
+    top: 0;
+
 
     .intro {
         display: flex;
-        justify-content: center;
+        // justify-content: center;
         padding: 10px 20px;
         align-items: center;
         gap: 10px;
-
+        background-image: url('../../assets//images//home-bg.jpg');
+        background-size: cover;
+        height: 450px;
         &__share {
             font-size: 20px;
             border-radius: 20px;
@@ -18,7 +23,7 @@
 
         p {
             font-size: 8vmin;
-            color: $viaggioGray;
+            color: white;
             font-family: $viaggioFontBold;
             
             strong {
