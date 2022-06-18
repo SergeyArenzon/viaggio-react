@@ -5,6 +5,7 @@ import { login, logout } from "../../features/user";
 import { AuthApi } from '../../services/api/index';
 import { useNavigate } from 'react-router-dom';
 import './Auth.scss';
+import Input from "../UI/Input/Input";
 
 
 // interface IUser {
@@ -21,7 +22,7 @@ import './Auth.scss';
 
 
 export default function Auth() {
-  const emailRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
   const firstNameRef = useRef<HTMLInputElement>(null);
@@ -92,10 +93,19 @@ export default function Auth() {
 
   const signUpForm = (
     <form onSubmit={registerHandler}>
-      <input type="email" ref={emailRef}></input>
-      <input type="password" ref={passwordRef}></input>
-      <input type="text" ref={firstNameRef}></input>
-      <input type="text" ref={lastNameRef}></input>
+      <div>
+        <Input type="text" />
+        {/* <input type="text" ref={firstNameRef}></input> */}
+      </div>
+      <div>
+        <input type="text" ref={lastNameRef}></input>
+      </div>
+      <div>
+        <input type="email" ref={emailRef}></input>
+      </div>
+      <div>
+        <input type="password" ref={passwordRef}></input>
+      </div>
       <button>register</button>
     </form>
   );
@@ -118,14 +128,18 @@ export default function Auth() {
   return (
     <div className="auth">
       <div className="auth__description">
-
+        {/* <p>dfsdfsdfsdfsdfsd</p>
+        <p>dfsdfsdfsdfsdfsd</p>
+        <p>dfsdfsdfsdfsdfsd</p>
+        <p>dfsdfsdfsdfsdfsd</p> */}
       </div>
       <div className="auth__form">
-        <button onClick={() =>  AuthApi.user()}>checkckkk</button>
+        {/* <button onClick={() =>  AuthApi.user()}>checkckkk</button>
         <button onClick={logoutHandler}>logout</button>
-        <button onClick={logoutHandler}>test</button>
-        {signUpMode ? signUpForm : logInForm}
+        <button onClick={logoutHandler}>test</button> */}
+        <p>Get's started.</p>
         <button onClick={() => setSignUpMode(!signUpMode)}>Switch</button>
+        {signUpMode ? signUpForm : logInForm}
       </div>
     </div>
   );
