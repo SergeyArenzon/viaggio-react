@@ -19,7 +19,9 @@
     align-items: center;
     // background-color: white;
     padding: 0 60px;
-
+    transition: background-color 0.5s linear;
+    font-family: $viaggioFontBold;
+    
     &--white {
         background-color: white;
         transition: background-color 0.5s linear;
@@ -28,7 +30,7 @@
     &__items { 
         display: flex;
         list-style-type: none;
-        color: $viaggioGray;
+        color: $mainGreen;
         margin-left: auto;
         
         
@@ -36,6 +38,9 @@
             margin-right: 10px;
             cursor: pointer;
             position: relative;
+        
+            
+          
             
             &:last-child {
                 margin-right: 30px;
