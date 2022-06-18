@@ -7,25 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import './Auth.scss';
 import Input from "../UI/Input/Input";
 
-
-// interface IUser {
-//   user: {
-//     info: {
-//       firstName: string,
-//       lastName: string,
-//       email: string,
-//       _id: string,
-//       date: string,
-//     }
-//   }
-// }
-
-
 export default function Auth() {
-  const emailRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
-  const lastNameRef = useRef<HTMLInputElement>(null);
-  const firstNameRef = useRef<HTMLInputElement>(null);
+  const [email, setEmail] = useState<string | null>(null);
+  const [password, setPassword] = useState<string | null>(null);
+  const [lastName, setLastName] = useState<string | null>(null);
+  const [firstName, setFirstName] = useState<string | null>(null);
 
   const [loading, setLoading] = useState(true);
   const [signUpMode, setSignUpMode] = useState(true);
@@ -42,18 +28,18 @@ export default function Auth() {
     event.preventDefault();
 
     if (
-      emailRef.current === null ||
-      passwordRef.current === null ||
-      firstNameRef.current === null ||
-      lastNameRef.current === null
+      email === null ||
+      password === null ||
+      firstName === null ||
+      lastName === null
     ) {
       return;
     }
     const data = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-      firstName: firstNameRef.current.value,
-      lastName: lastNameRef.current.value,
+      email,
+      password,
+      firstName,
+      lastName
     };
     const isValid = await userSchema.isValid(data);
 
@@ -73,15 +59,11 @@ export default function Auth() {
   const loginHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (
-      emailRef.current === null ||
-      passwordRef.current === null
-    ) {
-      return;
-    }
+    if (email === null || password === null) return;
+    
     const data = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
+      email,
+      password
     };
 
     const response: any = await AuthApi.login(data);
@@ -94,17 +76,17 @@ export default function Auth() {
   const signUpForm = (
     <form onSubmit={registerHandler}>
       <div>
-        <Input type="text" />
+        <Input type="text" setState={setFirstName}/>
         {/* <input type="text" ref={firstNameRef}></input> */}
       </div>
       <div>
-        <input type="text" ref={lastNameRef}></input>
+        <Input type="text" setState={setLastName}/>
       </div>
       <div>
-        <input type="email" ref={emailRef}></input>
+        <Input type="email" setState={setEmail}/>
       </div>
       <div>
-        <input type="password" ref={passwordRef}></input>
+        <Input type="password" setState={setPassword}/>
       </div>
       <button>register</button>
     </form>
@@ -112,8 +94,8 @@ export default function Auth() {
 
   const logInForm = (
     <form onSubmit={loginHandler}>
-      <input type="email" ref={emailRef}></input>
-      <input type="password" ref={passwordRef}></input>
+      {/* <input type="email" ref={emailRef}></input>
+      <input type="password" ref={passwordRef}></input> */}
       <button>login</button>
     </form>
   );
