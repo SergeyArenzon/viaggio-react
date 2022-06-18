@@ -27,7 +27,7 @@ export default function Auth() {
   const firstNameRef = useRef<HTMLInputElement>(null);
 
   const [loading, setLoading] = useState(true);
-  const [signUpMode, setSignUpMode] = useState(true);
+  const [signUpMode, setSignUpMode] = useState(false);
 
   const user = useSelector((state: IUser) => state.user.info);
   const dispatch = useDispatch();
@@ -118,14 +118,18 @@ export default function Auth() {
   return (
     <div className="auth">
       <div className="auth__description">
-
+        {/* <p>dfsdfsdfsdfsdfsd</p>
+        <p>dfsdfsdfsdfsdfsd</p>
+        <p>dfsdfsdfsdfsdfsd</p>
+        <p>dfsdfsdfsdfsdfsd</p> */}
       </div>
       <div className="auth__form">
-        <button onClick={() =>  AuthApi.user()}>checkckkk</button>
+        {/* <button onClick={() =>  AuthApi.user()}>checkckkk</button>
         <button onClick={logoutHandler}>logout</button>
-        <button onClick={logoutHandler}>test</button>
-        {signUpMode ? signUpForm : logInForm}
+        <button onClick={logoutHandler}>test</button> */}
+        <p>Get's started.</p>
         <button onClick={() => setSignUpMode(!signUpMode)}>Switch</button>
+        {signUpMode ? signUpForm : logInForm}
       </div>
     </div>
   );

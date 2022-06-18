@@ -1,12 +1,27 @@
 @import '../../sass/variables';
 
 .auth {
-    background-image: url('../../assets/images/auth-bg.jpg');
-    height: calc(100vh - 51px);
-    background-size: cover;
-
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    
+    
+    &__description {
+        background-image: url('../../assets/images/auth-bg.jpg');
+        height: 100%;
+        width: 50%;
+        background-size: cover;
+        background-position-x: center;
+    }
+    
     &__form {
-        width: 600px;
-
+        height: 100%;
+        width: 50%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }
