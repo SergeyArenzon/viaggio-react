@@ -1,0 +1,19 @@
+@import '../../../sass/variables';
+
+
+.input {
+    border-radius: 20px;
+    height: 30px;
+    width: 200px;
+    padding-left: 20px;
+
+    outline-color: $mainGreen;
+    border-color: $mainGreen;
+    border-style: solid;
+    outline: none;
+    
+    &:focus-visible {
+     
+        outline: none;
+    }
+}

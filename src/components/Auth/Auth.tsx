@@ -5,6 +5,7 @@ import { login, logout } from "../../features/user";
 import { AuthApi } from '../../services/api/index';
 import { useNavigate } from 'react-router-dom';
 import './Auth.scss';
+import Input from "../UI/Input/Input";
 
 
 // interface IUser {
@@ -21,13 +22,13 @@ import './Auth.scss';
 
 
 export default function Auth() {
-  const emailRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
   const firstNameRef = useRef<HTMLInputElement>(null);
 
   const [loading, setLoading] = useState(true);
-  const [signUpMode, setSignUpMode] = useState(false);
+  const [signUpMode, setSignUpMode] = useState(true);
 
   const user = useSelector((state: IUser) => state.user.info);
   const dispatch = useDispatch();
@@ -92,10 +93,19 @@ export default function Auth() {
 
   const signUpForm = (
     <form onSubmit={registerHandler}>
-      <input type="email" ref={emailRef}></input>
-      <input type="password" ref={passwordRef}></input>
-      <input type="text" ref={firstNameRef}></input>
-      <input type="text" ref={lastNameRef}></input>
+      <div>
+        <Input type="text" />
+        {/* <input type="text" ref={firstNameRef}></input> */}
+      </div>
+      <div>
+        <input type="text" ref={lastNameRef}></input>
+      </div>
+      <div>
+        <input type="email" ref={emailRef}></input>
+      </div>
+      <div>
+        <input type="password" ref={passwordRef}></input>
+      </div>
       <button>register</button>
     </form>
   );
