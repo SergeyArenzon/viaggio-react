@@ -6,14 +6,18 @@
     height: 30px;
     width: 200px;
     padding-left: 20px;
-
-    outline-color: $mainGreen;
-    border-color: $mainGreen;
+    background-color: inherit;
+    // outline-color: $mainGreen;
     border-style: solid;
     outline: none;
+    color: $viaggioGray;
+    border-color: $viaggioGray;
+    cursor: pointer;
+    
     
     &:focus-visible {
-     
+        border-color: $mainGreen;
+        cursor: text;
         outline: none;
     }
 }
