@@ -4,19 +4,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../../features/user";
 import { AuthApi } from '../../services/api/index';
 import { useNavigate } from 'react-router-dom';
+import './Auth.scss';
 
 
-interface IUser {
-  user: {
-    info: {
-      firstName: string,
-      lastName: string,
-      email: string,
-      _id: string,
-      date: string,
-    }
-  }
-}
+// interface IUser {
+//   user: {
+//     info: {
+//       firstName: string,
+//       lastName: string,
+//       email: string,
+//       _id: string,
+//       date: string,
+//     }
+//   }
+// }
 
 
 export default function Auth() {
@@ -115,18 +116,17 @@ export default function Auth() {
 
   
   return (
-    <div>
-      <button
-        onClick={() =>  AuthApi.user()}
-      >
-        checkckkk
-      </button>
+    <div className="auth">
+      <div className="auth__description">
 
-      <button onClick={logoutHandler}>logout</button>
-      <button onClick={logoutHandler}>test</button>
-
-      {signUpMode ? signUpForm : logInForm}
-      <button onClick={() => setSignUpMode(!signUpMode)}>Switch</button>
+      </div>
+      <div className="auth__form">
+        <button onClick={() =>  AuthApi.user()}>checkckkk</button>
+        <button onClick={logoutHandler}>logout</button>
+        <button onClick={logoutHandler}>test</button>
+        {signUpMode ? signUpForm : logInForm}
+        <button onClick={() => setSignUpMode(!signUpMode)}>Switch</button>
+      </div>
     </div>
   );
 }

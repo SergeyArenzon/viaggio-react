@@ -1,23 +1,36 @@
 @import '../../sass/variables';
 
+
+.wrapper {
+
+    position: fixed;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+}
+
 .topbar {
     // background-color: $mainGreen;
     color: black;
     height: 50px;
-    border-bottom: 1px $viaggioGray solid;
+    // border-bottom: 1px $viaggioGray solid;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background-color: white;
-    padding: 0 20px;
+    // background-color: white;
+    padding: 0 60px;
+    transition: background-color 0.5s linear;
+    font-family: $viaggioFontBold;
+    
+    &--white {
+        background-color: white;
+        transition: background-color 0.5s linear;
+    }
     
     &__items { 
         display: flex;
         list-style-type: none;
-        color: $viaggioGray;
+        color: $mainGreen;
         margin-left: auto;
         
         
@@ -25,6 +38,9 @@
             margin-right: 10px;
             cursor: pointer;
             position: relative;
+        
+            
+          
             
             &:last-child {
                 margin-right: 30px;

@@ -1,0 +1,12 @@
+@import '../../sass/variables';
+
+.auth {
+    background-image: url('../../assets/images/auth-bg.jpg');
+    height: calc(100vh - 51px);
+    background-size: cover;
+
+    &__form {
+        width: 600px;
+
+    }
+}
