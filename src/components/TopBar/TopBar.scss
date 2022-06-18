@@ -19,6 +19,11 @@
     align-items: center;
     // background-color: white;
     padding: 0 60px;
+
+    &--white {
+        background-color: white;
+        transition: background-color 0.5s linear;
+    }
     
     &__items { 
         display: flex;

@@ -2,27 +2,36 @@ import "./TopBar.scss";
 import { NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import BorderedButton from "../UI/BorderedButton/BorderedButton";
-
-interface IUser {
-  user: {
-    info: {
-      firstName: string;
-      lastName: string;
-      email: string;
-      _id: string;
-      date: string;
-    };
-  };
-}
+import { useEffect, useState } from 'react';
 
 export default function TopBar(): JSX.Element {
-  const user = useSelector((state: IUser) => state.user.info);
 
+  
+  useEffect(() => {
+    window.addEventListener('scroll', pop);
+    
+    return () => window.removeEventListener('scroll', pop);
+  },[]);
+
+  const [topBarStyle, setTopBarStyle] = useState('')
+  const user = useSelector((state: IUser) => state.user.info);
   const location = useLocation();
+
+
+  const pop = () => {
+    if (window.scrollY > 100) {
+      setTopBarStyle('topbar--white');
+    }else {
+      setTopBarStyle('');
+    }
+  }
+
+  console.log("top bar render");
+  
 
   return (
     <nav className="wrapper">
-      <div className="topbar">
+      <div className={`topbar ${topBarStyle}`}>
         <div>LOGO</div>
         <ul className="topbar__items">
           <li>
