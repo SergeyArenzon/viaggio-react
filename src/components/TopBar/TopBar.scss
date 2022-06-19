@@ -21,6 +21,11 @@
     padding: 0 60px;
     transition: background-color 0.5s linear;
     font-family: $viaggioFontBold;
+
+
+    &__logo {
+        height: 60px;
+    }
     
     &--white {
         background-color: white;

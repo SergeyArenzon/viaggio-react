@@ -3,6 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import BorderedButton from "../UI/BorderedButton/BorderedButton";
 import { useEffect, useState } from 'react';
+import logo from '../../assets/images/viaggio-logo.png';
 
 export default function TopBar(): JSX.Element {
 
@@ -32,7 +33,7 @@ export default function TopBar(): JSX.Element {
   return (
     <nav className="wrapper">
       <div className={`topbar ${topBarStyle}`}>
-        <div>LOGO</div>
+        <img src={logo} className="topbar__logo"/>
         <ul className="topbar__items">
           <li>
             <NavLink
