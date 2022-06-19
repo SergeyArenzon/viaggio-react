@@ -80,7 +80,7 @@ export default function Auth() {
   };
 
   const signUpForm = (
-    <form onSubmit={registerHandler}>
+    <form onSubmit={registerHandler} >
       <div className="auth__input-container">
         <div className="auth__input-label">First Name</div>
         <Input type="text" setState={setFirstName}/>
@@ -132,9 +132,12 @@ export default function Auth() {
         {/* <button onClick={() =>  AuthApi.user()}>checkckkk</button>
         <button onClick={logoutHandler}>logout</button>
         <button onClick={logoutHandler}>test</button> */}
-        <p>Get's started.</p>
-        <button onClick={() => setSignUpMode(!signUpMode)}>Switch</button>
-        {signUpMode ? signUpForm : logInForm}
+        <div className="auth__form-wrapper">
+          <p>Welcome to VIAGGIO!</p>
+          <p>Already have an account? click <span>Here</span></p>
+          <button onClick={() => setSignUpMode(!signUpMode)}>Switch</button>
+          {signUpMode ? signUpForm : logInForm}
+        </div>
       </div>
     </div>
   );
