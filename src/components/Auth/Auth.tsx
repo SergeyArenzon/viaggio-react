@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { userSchema } from "../../validations/user";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../../features/user";
@@ -15,11 +15,17 @@ export default function Auth() {
 
   const [loading, setLoading] = useState(true);
   const [signUpMode, setSignUpMode] = useState(true);
+  const [widthPercent, setSidthPercent] = useState(30);
 
   const user = useSelector((state: IUser) => state.user.info);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+      setSidthPercent(60);
+  }, [])
+  
 
   /////////////////////
   //  Signout method //
@@ -116,13 +122,13 @@ export default function Auth() {
   
   return (
     <div className="auth">
-      <div className="auth__description">
+      <div className="auth__description" style={{width: `${100 - widthPercent}%`}}>
         {/* <p>dfsdfsdfsdfsdfsd</p>
         <p>dfsdfsdfsdfsdfsd</p>
         <p>dfsdfsdfsdfsdfsd</p>
         <p>dfsdfsdfsdfsdfsd</p> */}
       </div>
-      <div className="auth__form">
+      <div className="auth__form" style={{ width: `${widthPercent}%`}}>
         {/* <button onClick={() =>  AuthApi.user()}>checkckkk</button>
         <button onClick={logoutHandler}>logout</button>
         <button onClick={logoutHandler}>test</button> */}
