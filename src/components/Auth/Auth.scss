@@ -10,9 +10,10 @@
         font-size: 27px;
         // margin-bottom: 30px;
 
+        font-family: $viaggioFontBold;
         span {
-            color: $mainGreen;
             font-family: $viaggioFontBold;
+            color: $mainGreen;
         }
     }
     &__text {
@@ -46,6 +47,7 @@
 
     &__confirm {
         height: 50px;
+        margin-top: 30px;
     }
     
     &__form {
