@@ -5,6 +5,25 @@
     justify-content: center;
     align-items: center;
     display: flex;
+
+    &__title {
+        font-size: 27px;
+        // margin-bottom: 30px;
+
+        span {
+            color: $mainGreen;
+            font-family: $viaggioFontBold;
+        }
+    }
+    &__text {
+        margin-bottom: 30px;
+        span {
+            color: $mainGreen;
+            font-family: $viaggioFontBold;
+            cursor: pointer;
+
+        }
+    }
     
     &__input-label {
         margin-bottom: 3px;
@@ -26,7 +45,7 @@
     }
 
     &__confirm {
-        height: 40px;
+        height: 50px;
     }
     
     &__form {
