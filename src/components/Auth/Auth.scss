@@ -5,6 +5,26 @@
     justify-content: center;
     align-items: center;
     display: flex;
+
+    &__title {
+        font-size: 27px;
+        // margin-bottom: 30px;
+
+        font-family: $viaggioFontBold;
+        span {
+            font-family: $viaggioFontBold;
+            color: $mainGreen;
+        }
+    }
+    &__text {
+        margin-bottom: 30px;
+        span {
+            color: $mainGreen;
+            font-family: $viaggioFontBold;
+            cursor: pointer;
+
+        }
+    }
     
     &__input-label {
         margin-bottom: 3px;
@@ -23,6 +43,11 @@
         background-size: cover;
         background-position-x: center;
         transition: all 1s ease-out
+    }
+
+    &__confirm {
+        height: 50px;
+        margin-top: 30px;
     }
     
     &__form {
