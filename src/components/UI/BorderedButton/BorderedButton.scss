@@ -11,10 +11,28 @@
     justify-content: center;
     align-items: center;
     font-family: $viaggioFontBold;
+    cursor: pointer;
 
     &:hover {
         background-color: $mainGreen;
         color: white;
         transition: all 0.2s linear;
+    }
+
+    &--colored-bg {
+        border: 2px solid $mainGreen;
+        color: white;
+        background-color: $mainGreen;
+
+        &:hover {
+            background-color: white;
+            color: $mainGreen;
+            transition: all 0.2s linear;
+            border: 2px solid $mainGreen;
+
+        }
+
+
+
     }
 }

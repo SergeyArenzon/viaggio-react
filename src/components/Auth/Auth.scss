@@ -24,6 +24,10 @@
         background-position-x: center;
         transition: all 1s ease-out
     }
+
+    &__confirm {
+        height: 40px;
+    }
     
     &__form {
         height: 100%;

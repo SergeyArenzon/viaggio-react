@@ -6,6 +6,7 @@ import { AuthApi } from '../../services/api/index';
 import { useNavigate } from 'react-router-dom';
 import './Auth.scss';
 import Input from "../UI/Input/Input";
+import BorderedButton from "../UI/BorderedButton/BorderedButton";
 
 export default function Auth() {
   const [email, setEmail] = useState<string | null>(null);
@@ -97,7 +98,10 @@ export default function Auth() {
         <div className="auth__input-label">Password</div>
         <Input type="password" setState={setPassword}/>
       </div>
-      <button className="auth__input-label">register</button>
+      <div className="auth__confirm"> 
+
+        <BorderedButton buttonStyle="bordered-button--colored-bg">Register</BorderedButton>
+      </div>
     </form>
   );
 
