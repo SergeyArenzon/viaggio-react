@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "./Auth.scss";
 import Input from "../UI/Input/Input";
 import BorderedButton from "../UI/BorderedButton/BorderedButton";
+import logo from '../../assets/images/viaggio-logo.png';
 
 export default function Auth() {
   const [email, setEmail] = useState<string | null>(null);
@@ -30,7 +31,7 @@ export default function Auth() {
   //  Signout method //
   /////////////////////
   const registerHandler = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     if (
       email === null ||
@@ -62,7 +63,7 @@ export default function Auth() {
   //  Signin method //
   ////////////////////
   const loginHandler = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     if (email === null || password === null) return;
 
@@ -99,9 +100,9 @@ export default function Auth() {
         {/* <button onClick={() =>  AuthApi.user()}>checkckkk</button>
         <button onClick={logoutHandler}>logout</button>
         <button onClick={logoutHandler}>test</button> */}
+        <img className="auth__logo" src={logo} />
         <div className="auth__form-wrapper">
           <p className="auth__title">Welcome to <span>VIAGGIO</span>!</p>
-          <p className="auth__text">Already have an account? <span onClick={() => setSignUpMode(!signUpMode)}>Click Here</span></p>
           <form onSubmit={registerHandler}>
             {signUpMode && <React.Fragment>
               <div className="auth__input-container">
@@ -121,8 +122,9 @@ export default function Auth() {
               <div className="auth__input-label">Password</div>
               <Input type="password" setState={setPassword} />
             </div>
+            <p className="auth__text">Already have an account? <span onClick={() => setSignUpMode(!signUpMode)}>Click Here</span></p>
             <div className="auth__confirm">
-              <BorderedButton buttonStyle="bordered-button--colored-bg bordered-button--rounded-radius">
+              <BorderedButton buttonStyle="bordered-button--colored-bg bordered-button--rounded-radius" clickHandler={signUpMode ? registerHandler : loginHandler}>
                 {signUpMode ? "Register" : "Login"}
               </BorderedButton>
             </div>
