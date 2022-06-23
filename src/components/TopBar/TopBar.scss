@@ -20,7 +20,7 @@
     // background-color: white;
     padding: 0 60px;
     transition: background-color 0.5s linear;
-    font-family: $viaggioFontBold;
+    // font-family: $viaggioFontBold;
 
 
     &__logo {
@@ -38,6 +38,31 @@
         color: $mainGreen;
         margin-left: auto;
         
+        &--active {
+            font-family: $viaggioFontBold !important;
+            // color: inherit;'
+
+            
+            &::after {
+                content: "";
+                bottom: 0;
+                left: 0;
+                height: 3px;
+                width: 100%;
+                background-color: $mainGreen;
+                position: absolute;
+                border-radius: 10px;
+                color: $mainGreen;
+                transition: width 0.3s ease-in;         
+                &::after {
+                    width: 100%;
+                    transition: width 0.3s ease-in;         
+                }
+
+            }
+            
+    
+        }
         
         li {
             margin-right: 10px;

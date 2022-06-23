@@ -38,20 +38,20 @@ export default function TopBar(): JSX.Element {
           <li>
             <NavLink
               to="/"
-              style={({ isActive }) => (isActive ? { color: "#5F7161" } : {})}
-            >
+              // style={({ isActive }) => (isActive ? { color: "red" } : {})}
+              className={({ isActive }) => isActive ? "topbar__items--active" : ""}>
               <div className="text-black">HOME</div>
             </NavLink>
           </li>
           <li>
             <NavLink
               to="/profile"
-              style={({ isActive }) => (isActive ? { color: "#5F7161" } : {})}
-            >
+              className={({ isActive }) => isActive ? "topbar__items--active" : ""}>
+              
               <div className="text-black">PROFILE</div>
             </NavLink>
           </li>
-          <li>TEST</li>
+          {/* <li>TEST</li> */}
           <li>
             {user && (
               <div className="text-black">
@@ -64,7 +64,7 @@ export default function TopBar(): JSX.Element {
           <NavLink
             className="topbar__login"
             to="/auth"
-            style={({ isActive }) => (isActive ? { color: "#5F7161" } : {})}
+            style={({ isActive }) => (isActive ? { color: "red" } : {})}
           >
             <BorderedButton>Login</BorderedButton>
           </NavLink>
