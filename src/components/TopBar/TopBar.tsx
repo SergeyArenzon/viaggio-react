@@ -7,10 +7,8 @@ import logo from '../../assets/images/viaggio-logo.png';
 
 export default function TopBar(): JSX.Element {
 
-  
   useEffect(() => {
     window.addEventListener('scroll', pop);
-    
     return () => window.removeEventListener('scroll', pop);
   },[]);
 
@@ -27,8 +25,9 @@ export default function TopBar(): JSX.Element {
     }
   }
 
-  console.log("top bar render");
-  
+  console.log("topbar",user);
+
+
 
   return (
     <nav className="wrapper">
@@ -61,13 +60,17 @@ export default function TopBar(): JSX.Element {
           </li>
         </ul>
         <div>
-          <NavLink
+         {!user && <NavLink
             className="topbar__login"
             to="/auth"
             style={({ isActive }) => (isActive ? { color: "red" } : {})}
           >
             <BorderedButton>Login</BorderedButton>
-          </NavLink>
+          </NavLink>}
+
+          {user && <div className="topbar__user">
+            
+            </div>}
         </div>
       </div>
     </nav>

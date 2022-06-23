@@ -31,9 +31,10 @@ function App() {
   useEffect(() => {
     const getUser = async () => {
       const userInfo = await AuthApi.user();
-      console.log(userInfo);
+      // console.log(userInfo);
       
       if (!userInfo?.error) {
+        console.log(userInfo)
         dispatch(login(userInfo));
       }
     };

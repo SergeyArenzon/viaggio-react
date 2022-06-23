@@ -4,7 +4,7 @@ interface IUser {
   firstName: string,
   lastName: string,
   email: string,
-  _id: string,
+  id: string,
   date: string,
 }
 
@@ -21,19 +21,14 @@ interface RootState {
   }
 }
 
-const initialStateValue: IUser = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  _id: "",
-  date: "",
-};
+const initialStateValue = null;
 
 export const userSlice = createSlice({name: "user", initialState: {info: initialStateValue}, reducers: {
     login: (state, action) => {
+      console.log(action.payload);
       state.info = action.payload;
     },
-    logout: (state: {info: IUser}) => {
+    logout: (state: {info: IUser | null}) => {
       state.info = initialStateValue;
     },
   },
