@@ -6,16 +6,20 @@ import { useEffect, useState } from 'react';
 import logo from '../../assets/images/viaggio-logo.png';
 
 export default function TopBar(): JSX.Element {
+  const user = useSelector((state: any) => state);
+  const [topBarStyle, setTopBarStyle] = useState('')
+
 
   useEffect(() => {
     window.addEventListener('scroll', pop);
     return () => window.removeEventListener('scroll', pop);
   },[]);
 
-  const [topBarStyle, setTopBarStyle] = useState('')
-  const user = useSelector((state: IUser) => state.user.info);
-  const location = useLocation();
 
+  
+
+  // const location = useLocation();
+  
 
   const pop = () => {
     if (window.scrollY > 100) {
@@ -25,9 +29,9 @@ export default function TopBar(): JSX.Element {
     }
   }
 
-  console.log("topbar",user);
+  console.log("topbar",user.auth.user.email);
 
-
+  
 
   return (
     <nav className="wrapper">
@@ -60,7 +64,7 @@ export default function TopBar(): JSX.Element {
           </li>
         </ul>
         <div>
-         {!user && <NavLink
+         { <NavLink
             className="topbar__login"
             to="/auth"
             style={({ isActive }) => (isActive ? { color: "red" } : {})}
@@ -69,7 +73,7 @@ export default function TopBar(): JSX.Element {
           </NavLink>}
 
           {user && <div className="topbar__user">
-            
+            {user.auth.user.email}sadasdasd
             </div>}
         </div>
       </div>

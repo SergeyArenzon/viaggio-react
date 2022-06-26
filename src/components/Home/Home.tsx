@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { Locations } from "../../services/api/index";
 import './Home.scss';
 import travelingImg from '../../assets/images/traveling.svg';
 import BorderedButtom from './../UI/BorderedButton/BorderedButton';
 import LocationCard from '../LocationCard/LocationCard';
+import { login, getUser } from "../../features/user";
+import {fetchRandomUserData} from './../../store/slices/authSlice';
 
 
 export default function Home() {
   const [locations, setLocations] = useState<null | ILocation[]>(null);
-  const user = useSelector((state: IUser) => state.user.info);
+  // const user = useSelector((state: IUser) => state.user.info);
+  const user = useSelector((state: any) => state);
+
+  // console.log("home", user);
+
+  
 
   useEffect(() => {
     const getLocations = async () => {
@@ -44,6 +51,7 @@ export default function Home() {
 
   return (
     <div className="home">
+
       <div className="intro">
         <p>
           <strong>Share</strong> Your<br/> <strong>Traveling</strong><br/> Locations<strong>.</strong>

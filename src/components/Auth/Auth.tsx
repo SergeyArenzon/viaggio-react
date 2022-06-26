@@ -80,9 +80,11 @@ export default function Auth() {
   };
 
 
-  const logoutHandler = async () => {
+  const logoutHandler = async (e: any) => {
+    e.preventDefault();    
     const request = AuthApi.logout();
     dispatch(logout());
+    navigate("/");
   };
 
   return (
@@ -126,6 +128,7 @@ export default function Auth() {
             <div className="auth__confirm">
               <BorderedButton buttonStyle="bordered-button--colored-bg bordered-button--rounded-radius" clickHandler={signUpMode ? registerHandler : loginHandler}>
                 {signUpMode ? "Register" : "Login"}
+                <button onClick={(e) => logoutHandler(e)}></button>
               </BorderedButton>
             </div>
           </form>

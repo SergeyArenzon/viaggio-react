@@ -8,8 +8,10 @@ import EditLocation from "./components/EditLocation/EditLocation";
 import Auth from "./components/Auth/Auth";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { login } from "./features/user";
+import { login, getUser } from "./features/user";
 import { AuthApi } from "./services/api/index";
+import {fetchRandomUserData} from './store/slices/authSlice'
+
 
 
 interface IUser {
@@ -25,21 +27,14 @@ interface IUser {
 }
 
 function App() {
-  const user = useSelector((state: IUser) => state.user.info);
+  // const user = useSelector((state: IUser) => state.user.info);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getUser = async () => {
-      const userInfo = await AuthApi.user();
-      // console.log(userInfo);
-      
-      if (!userInfo?.error) {
-        console.log(userInfo)
-        dispatch(login(userInfo));
-      }
-    };
-    getUser();
-  }, []);
+   
+    dispatch(fetchRandomUserData())
+    
+  }, [dispatch]);
 
   
 
@@ -56,6 +51,7 @@ function App() {
         </Routes>
       </Layout>
     </BrowserRouter>
+    
   );
 }
 
