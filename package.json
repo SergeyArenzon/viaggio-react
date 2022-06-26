@@ -9,7 +9,7 @@
     "@mui/material": "^5.2.3",
     "@mui/styles": "^5.2.3",
     "@react-google-maps/api": "^2.10.2",
-    "@reduxjs/toolkit": "^1.7.1",
+    "@reduxjs/toolkit": "^1.8.2",
     "@types/google-map-react": "^2.1.5",
     "@types/jest": "^27.4.0",
     "@types/mongoose": "^5.11.97",
