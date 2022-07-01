@@ -19,7 +19,7 @@ export default function Auth() {
   const [signUpMode, setSignUpMode] = useState(true);
   const [widthPercent, setSidthPercent] = useState(30);
 
-  const user = useSelector((state: IUser) => state.user.info);
+  // const user = useSelector((state: IUser) => state.user.info);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

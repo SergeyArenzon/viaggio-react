@@ -7,17 +7,13 @@ import travelingImg from '../../assets/images/traveling.svg';
 import BorderedButtom from './../UI/BorderedButton/BorderedButton';
 import LocationCard from '../LocationCard/LocationCard';
 import { login, getUser } from "../../features/user";
-import {fetchRandomUserData} from './../../store/slices/authSlice';
+import {fetchUserData} from './../../store/slices/authSlice';
 
 
 export default function Home() {
   const [locations, setLocations] = useState<null | ILocation[]>(null);
   // const user = useSelector((state: IUser) => state.user.info);
   const user = useSelector((state: any) => state);
-
-  // console.log("home", user);
-
-  
 
   useEffect(() => {
     const getLocations = async () => {
@@ -27,7 +23,6 @@ export default function Home() {
     getLocations();
   }, []);
 
-  // console.log(locations);
   
 
   const locationsList = (
@@ -40,8 +35,6 @@ export default function Home() {
             <li key={location.name + index}>
               <LocationCard location={location}/>
             </li>
-
-
           );
         })}
     </ul>

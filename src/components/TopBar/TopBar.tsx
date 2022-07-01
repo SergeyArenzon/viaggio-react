@@ -29,7 +29,7 @@ export default function TopBar(): JSX.Element {
     }
   }
 
-  console.log("topbar",user.auth.user.email);
+  console.log("topbar",user);
 
   
 

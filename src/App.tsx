@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login, getUser } from "./features/user";
 import { AuthApi } from "./services/api/index";
-import {fetchRandomUserData} from './store/slices/authSlice'
+import {fetchUserData} from './store/slices/authSlice'
 
 
 
@@ -32,7 +32,7 @@ function App() {
 
   useEffect(() => {
    
-    dispatch(fetchRandomUserData())
+    dispatch(fetchUserData())
     
   }, [dispatch]);
 

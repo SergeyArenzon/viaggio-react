@@ -1,6 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import booksReducer from './reducers/booksReducer';
-import booksReducer from './slices/bookSlice';
 import authReducer from './slices/authSlice';
 import thunkMiddleware from 'redux-thunk';
 

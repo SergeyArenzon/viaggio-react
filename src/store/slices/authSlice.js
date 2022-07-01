@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { AuthApi } from '../../services/api/index';
 
 const initialState = {
   isLoggedIn: true,
@@ -7,20 +8,18 @@ const initialState = {
   error: null,
 };
 
-export const fetchRandomUserData = createAsyncThunk(
-  'auth/fetchRandomUser',
+export const fetchUserData = createAsyncThunk(
+  'auth/fetchUser',
   async () => {
     try {
-      const response = await fetch('https://randomuser.me/api/');
-      const data = await response.json();
-      return data.results[0];
+      const response = await AuthApi.user();
+      return response;
     } catch (error) {
       throw Error(error);
     }
   }
 );
 
-console.log(fetchRandomUserData);
 
 const authSlice = createSlice({
   name: 'auth',
@@ -30,20 +29,34 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
     },
   },
-  extraReducers: {
-    [fetchRandomUserData.pending]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(fetchUserData.pending, (state, action) => {
       state.loading = true;
       state.error = null;
-    },
-    [fetchRandomUserData.fulfilled]: (state, action) => {
+    });
+    builder.addCase(fetchUserData.fulfilled, (state, action) => {
       state.user = action.payload;
       state.loading = false;
-    },
-    [fetchRandomUserData.rejected]: (state, action) => {
+    });
+    builder.addCase(fetchUserData.rejected, (state, action) => {
       state.error = action.error.message;
       state.loading = false;
-    },
-  },
+    });
+  }
+  // extraReducers: {
+  //   [fetchRandomUserData.pending]: (state, action) => {
+  //     state.loading = true;
+  //     state.error = null;
+  //   },
+  //   [fetchRandomUserData.fulfilled]: (state, action) => {
+  //     state.user = action.payload;
+  //     state.loading = false;
+  //   },
+  //   [fetchRandomUserData.rejected]: (state, action) => {
+  //     state.error = action.error.message;
+  //     state.loading = false;
+  //   },
+  // },
 });
 
 export const { logout } = authSlice.actions;
