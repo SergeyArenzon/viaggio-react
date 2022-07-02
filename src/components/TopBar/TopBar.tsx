@@ -8,7 +8,8 @@ import userIcon from '../../assets/images/user.svg';
 
 export default function TopBar(): JSX.Element {
   const user = useSelector((state: any) => state.auth.user);
-  const [topBarStyle, setTopBarStyle] = useState('')
+  const [topBarStyle, setTopBarStyle] = useState('');
+  const [showUserDropDown, setShowUserDropDown] = useState(false);
 
 
   useEffect(() => {
@@ -70,8 +71,13 @@ export default function TopBar(): JSX.Element {
           </NavLink> 
           :
           
-           <div className="topbar__user">
+           <div className="topbar__user" onClick={() => setShowUserDropDown(prevState => !prevState)}>
               <img src={userIcon}/>
+              <ul className={`topbar__user-dropdown ${showUserDropDown ? "topbar__user-dropdown--active" : ""}`}>
+                <li>x</li>
+                <li>yyyyyyyy</li>
+                <li>Logout</li>
+              </ul>
             </div>
           }
 

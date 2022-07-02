@@ -33,9 +33,33 @@
         align-items: center;
         border: 3px $mainGreen solid;
         cursor: pointer;
+        position: relative;
 
         img {
             height: 25px;
+        }
+
+        &-dropdown {
+            list-style: none;
+            opacity: 0;
+            background-color: white;
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: calc(100% - 13px);
+            right: 0;
+            padding: 0;
+            margin: 0;
+            border-radius: 10px;
+            
+            
+            &--active {
+                opacity: 1;
+                transition: opacity 0.1s linear, top 0.1s linear;
+                top: calc(100% + 3px);
+                box-shadow: 0 2px 5px 0 black;
+
+            }
         }
     }
 
