@@ -24,10 +24,19 @@
 
 
     &__user {
-        height: 20px;
-        width: 20px;
+        height: 38px;
+        width: 38px;
         background-color: white;
         border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 3px $mainGreen solid;
+        cursor: pointer;
+
+        img {
+            height: 25px;
+        }
     }
 
     &__logo {

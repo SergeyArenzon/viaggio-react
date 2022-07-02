@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Locations } from "../../services/api/index";
 import './Home.scss';
-import travelingImg from '../../assets/images/traveling.svg';
 import BorderedButtom from './../UI/BorderedButton/BorderedButton';
 import LocationCard from '../LocationCard/LocationCard';
-import { login, getUser } from "../../features/user";
-import {fetchUserData} from './../../store/slices/authSlice';
 
 
 export default function Home() {
   const [locations, setLocations] = useState<null | ILocation[]>(null);
   // const user = useSelector((state: IUser) => state.user.info);
-  const user = useSelector((state: any) => state);
+  const user = useSelector((state: IUser) => state);
 
   useEffect(() => {
     const getLocations = async () => {

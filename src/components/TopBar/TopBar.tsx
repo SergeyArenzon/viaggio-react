@@ -4,9 +4,10 @@ import { useSelector } from "react-redux";
 import BorderedButton from "../UI/BorderedButton/BorderedButton";
 import { useEffect, useState } from 'react';
 import logo from '../../assets/images/viaggio-logo.png';
+import userIcon from '../../assets/images/user.svg';
 
 export default function TopBar(): JSX.Element {
-  const user = useSelector((state: any) => state);
+  const user = useSelector((state: any) => state.auth.user);
   const [topBarStyle, setTopBarStyle] = useState('')
 
 
@@ -16,10 +17,6 @@ export default function TopBar(): JSX.Element {
   },[]);
 
 
-  
-
-  // const location = useLocation();
-  
 
   const pop = () => {
     if (window.scrollY > 100) {
@@ -64,17 +61,20 @@ export default function TopBar(): JSX.Element {
           </li>
         </ul>
         <div>
-         { <NavLink
+         {!user ? <NavLink
             className="topbar__login"
             to="/auth"
             style={({ isActive }) => (isActive ? { color: "red" } : {})}
           >
             <BorderedButton>Login</BorderedButton>
-          </NavLink>}
+          </NavLink> 
+          :
+          
+           <div className="topbar__user">
+              <img src={userIcon}/>
+            </div>
+          }
 
-          {user && <div className="topbar__user">
-            {/* {user.auth.user.email} */}
-            </div>}
         </div>
       </div>
     </nav>

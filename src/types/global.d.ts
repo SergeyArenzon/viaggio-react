@@ -19,15 +19,12 @@ declare global {
     ratings: [IRating]
   }
   interface IUser {
-    user: {
-      info: {
-        firstName: string,
-        lastName: string,
-        email: string,
-        id: string,
-        date: string,
-      }
-    }
+    _id: string
+    firstName: string,
+    lastName: string,
+    email: string,
+    id: string,
+    date: string,
   }
   interface IRating {
     rating: number,

@@ -3,7 +3,7 @@ import { AuthApi } from '../../services/api/index';
 
 const initialState = {
   isLoggedIn: false,
-  user: {},
+  user: null,
   loading: false,
   error: null,
 };
@@ -13,7 +13,6 @@ export const fetchUserData = createAsyncThunk(
   async () => {
     try {
       const response = await AuthApi.user();
-      console.log("response",response);
       return response;
     } catch (error) {
       throw Error(error);
@@ -52,6 +51,6 @@ const authSlice = createSlice({
   }
 });
 
-export const { logout, login } = authSlice.actions;
 
+export const { logout, login } = authSlice.actions;
 export default authSlice.reducer;
