@@ -8,13 +8,19 @@ import userReducer from "./features/user";
 import './sass/_global.scss';
 import './sass/_typography.scss';
 
+import store from './store/store';
 
 
-const store = configureStore({
-  reducer: {
-    user: userReducer
-  },
-});
+
+
+
+
+// const store = configureStore({
+//   reducer: {
+//     user: userReducer
+//   },
+//   devTools: true
+// });
 
 
 const rootElement = document.getElementById('root');

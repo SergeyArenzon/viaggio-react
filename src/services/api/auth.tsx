@@ -15,7 +15,7 @@ const Auth = {
   user: async () => {
     try {
       const response = await get("/user");
-      return response.data.user;
+      return response.data;
     } catch (error) {
       return error ;
     }

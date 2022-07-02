@@ -7,38 +7,19 @@ import ShowLocation from "./components/ShowLocation/ShowLocation";
 import EditLocation from "./components/EditLocation/EditLocation";
 import Auth from "./components/Auth/Auth";
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { login } from "./features/user";
-import { AuthApi } from "./services/api/index";
+import { useDispatch } from "react-redux";
+import {fetchUserData} from './store/slices/authSlice'
 
-
-interface IUser {
-  user: {
-    info: {
-      firstName: string,
-      lastName: string,
-      email: string,
-      _id: string,
-      date: string,
-    }
-  }
-}
 
 function App() {
-  const user = useSelector((state: IUser) => state.user.info);
+  // const user = useSelector((state: IUser) => state.user.info);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getUser = async () => {
-      const userInfo = await AuthApi.user();
-      console.log(userInfo);
-      
-      if (!userInfo?.error) {
-        dispatch(login(userInfo));
-      }
-    };
-    getUser();
-  }, []);
+   
+    dispatch(fetchUserData())
+    
+  }, [dispatch]);
 
   
 
@@ -55,6 +36,7 @@ function App() {
         </Routes>
       </Layout>
     </BrowserRouter>
+    
   );
 }
 

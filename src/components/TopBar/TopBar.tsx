@@ -4,19 +4,18 @@ import { useSelector } from "react-redux";
 import BorderedButton from "../UI/BorderedButton/BorderedButton";
 import { useEffect, useState } from 'react';
 import logo from '../../assets/images/viaggio-logo.png';
+import userIcon from '../../assets/images/user.svg';
 
 export default function TopBar(): JSX.Element {
+  const user = useSelector((state: any) => state.auth.user);
+  const [topBarStyle, setTopBarStyle] = useState('')
 
-  
+
   useEffect(() => {
     window.addEventListener('scroll', pop);
-    
     return () => window.removeEventListener('scroll', pop);
   },[]);
 
-  const [topBarStyle, setTopBarStyle] = useState('')
-  const user = useSelector((state: IUser) => state.user.info);
-  const location = useLocation();
 
 
   const pop = () => {
@@ -27,7 +26,8 @@ export default function TopBar(): JSX.Element {
     }
   }
 
-  console.log("top bar render");
+  console.log("topbar",user);
+
   
 
   return (
@@ -38,20 +38,20 @@ export default function TopBar(): JSX.Element {
           <li>
             <NavLink
               to="/"
-              style={({ isActive }) => (isActive ? { color: "#5F7161" } : {})}
-            >
+              // style={({ isActive }) => (isActive ? { color: "red" } : {})}
+              className={({ isActive }) => isActive ? "topbar__items--active" : ""}>
               <div className="text-black">HOME</div>
             </NavLink>
           </li>
           <li>
             <NavLink
               to="/profile"
-              style={({ isActive }) => (isActive ? { color: "#5F7161" } : {})}
-            >
+              className={({ isActive }) => isActive ? "topbar__items--active" : ""}>
+              
               <div className="text-black">PROFILE</div>
             </NavLink>
           </li>
-          <li>TEST</li>
+          {/* <li>TEST</li> */}
           <li>
             {user && (
               <div className="text-black">
@@ -61,13 +61,20 @@ export default function TopBar(): JSX.Element {
           </li>
         </ul>
         <div>
-          <NavLink
+         {!user ? <NavLink
             className="topbar__login"
             to="/auth"
-            style={({ isActive }) => (isActive ? { color: "#5F7161" } : {})}
+            style={({ isActive }) => (isActive ? { color: "red" } : {})}
           >
             <BorderedButton>Login</BorderedButton>
-          </NavLink>
+          </NavLink> 
+          :
+          
+           <div className="topbar__user">
+              <img src={userIcon}/>
+            </div>
+          }
+
         </div>
       </div>
     </nav>
