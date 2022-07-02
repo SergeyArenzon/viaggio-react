@@ -73,7 +73,7 @@ export default function TopBar(): JSX.Element {
           </NavLink>}
 
           {user && <div className="topbar__user">
-            {user.auth.user.email}
+            {/* {user.auth.user.email} */}
             </div>}
         </div>
       </div>

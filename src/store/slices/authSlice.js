@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthApi } from '../../services/api/index';
 
 const initialState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   user: {},
   loading: false,
   error: null,
@@ -13,6 +13,7 @@ export const fetchUserData = createAsyncThunk(
   async () => {
     try {
       const response = await AuthApi.user();
+      console.log("response",response);
       return response;
     } catch (error) {
       throw Error(error);
@@ -25,8 +26,13 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    logout(state, action) {
-      state.isLoggedIn = false;
+    login: (state, action) => {
+      state.user = action.payload;
+      state.isLoggedIn = Boolean(action.payload)
+      state.loading = false;
+    },
+    logout: (state) => {
+      state = initialState;
     },
   },
   extraReducers: (builder) => {
@@ -36,6 +42,7 @@ const authSlice = createSlice({
     });
     builder.addCase(fetchUserData.fulfilled, (state, action) => {
       state.user = action.payload;
+      state.isLoggedIn = Boolean(action.payload)
       state.loading = false;
     });
     builder.addCase(fetchUserData.rejected, (state, action) => {
@@ -43,22 +50,8 @@ const authSlice = createSlice({
       state.loading = false;
     });
   }
-  // extraReducers: {
-  //   [fetchRandomUserData.pending]: (state, action) => {
-  //     state.loading = true;
-  //     state.error = null;
-  //   },
-  //   [fetchRandomUserData.fulfilled]: (state, action) => {
-  //     state.user = action.payload;
-  //     state.loading = false;
-  //   },
-  //   [fetchRandomUserData.rejected]: (state, action) => {
-  //     state.error = action.error.message;
-  //     state.loading = false;
-  //   },
-  // },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, login } = authSlice.actions;
 
 export default authSlice.reducer;

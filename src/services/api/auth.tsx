@@ -15,8 +15,6 @@ const Auth = {
   user: async () => {
     try {
       const response = await get("/user");
-      // console.log(response);
-      response.data.id = response.data._id;
       return response.data;
     } catch (error) {
       return error ;

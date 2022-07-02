@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { userSchema } from "../../validations/user";
 import { useSelector, useDispatch } from "react-redux";
-import { login, logout } from "../../features/user";
+// import { login, logout } from "../../features/user";
 import { AuthApi } from "../../services/api/index";
 import { useNavigate } from "react-router-dom";
 import "./Auth.scss";
 import Input from "../UI/Input/Input";
 import BorderedButton from "../UI/BorderedButton/BorderedButton";
 import logo from '../../assets/images/viaggio-logo.png';
+import { logout, login } from '../../store/slices/authSlice'
 
 export default function Auth() {
   const [email, setEmail] = useState<string | null>(null);
@@ -63,16 +64,14 @@ export default function Auth() {
   //  Signin method //
   ////////////////////
   const loginHandler = async (event: React.FormEvent<HTMLFormElement>) => {
-    // event.preventDefault();
-
     if (email === null || password === null) return;
-
     const data = {
       email,
       password,
     };
 
     const response: any = await AuthApi.login(data);
+    
     if (response.status === 200) {
       dispatch(login(response.data.user));
       navigate("/");
