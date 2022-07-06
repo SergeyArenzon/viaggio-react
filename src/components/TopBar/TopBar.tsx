@@ -43,7 +43,12 @@ export default function TopBar(): JSX.Element {
   }
   console.log("topbar",user);
 
+  const closeModal = () => {
+    
+    setShowUserDropDown(false)
+  }
   
+  console.log("showUserDropDown",showUserDropDown);
 
   return (
     <nav className="wrapper">
@@ -85,11 +90,11 @@ export default function TopBar(): JSX.Element {
           </NavLink> 
           :
           
-           <div className="topbar__user" onClick={() => setShowUserDropDown(prevState => !prevState)}>
+           <div className="topbar__user" onClick={() => !showUserDropDown && setShowUserDropDown(true)}>
               <img src={userIcon}/>
-              {showUserDropDown && <Modal cb={() => setShowUserDropDown}>
+              {showUserDropDown && <Modal cb={closeModal}>
 
-                <ul className={`topbar__user-dropdown topbar__user-dropdown--active`}>
+                <ul className={`topbar__user-dropdown topbar__user-dropdown--active`} onClick={() => setShowUserDropDown(false)}>
                   <li>Profile</li>
                   {/* <li></li> */}
                   <li onClick={logoutHandler}>Logout <img src={logoutIcon}/></li>
