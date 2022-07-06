@@ -8,6 +8,7 @@ import userIcon from '../../assets/images/user.svg';
 import {logout} from '../../store/slices/authSlice';
 import { AuthApi } from '../../services/api/index';
 import logoutIcon from '../../assets/images/logout.svg';
+import Modal from "../UI/Modal/Modal";
 
 
 
@@ -86,11 +87,14 @@ export default function TopBar(): JSX.Element {
           
            <div className="topbar__user" onClick={() => setShowUserDropDown(prevState => !prevState)}>
               <img src={userIcon}/>
-              <ul className={`topbar__user-dropdown ${showUserDropDown ? "topbar__user-dropdown--active" : ""}`}>
-                <li>x</li>
-                <li>yyyyyyyy</li>
-                <li onClick={logoutHandler}>Logout <img src={logoutIcon}/></li>
-              </ul>
+              {showUserDropDown && <Modal cb={() => setShowUserDropDown}>
+
+                <ul className={`topbar__user-dropdown topbar__user-dropdown--active`}>
+                  <li>Profile</li>
+                  {/* <li></li> */}
+                  <li onClick={logoutHandler}>Logout <img src={logoutIcon}/></li>
+                </ul>
+              </Modal>}
             </div>
           }
 

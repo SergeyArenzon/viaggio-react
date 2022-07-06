@@ -44,15 +44,21 @@
             opacity: 0;
             background-color: white;
             width: 200px;
-            height: 200px;
+            // height: 200px;
             position: absolute;
             top: calc(100% - 13px);
             right: 0;
             padding: 0;
             margin: 0;
             border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            padding-left: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
 
             li {
+                width: fit-content;
                 &:hover {
                     color: $mainGreen;
                 }
