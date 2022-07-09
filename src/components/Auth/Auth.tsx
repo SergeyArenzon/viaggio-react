@@ -28,6 +28,27 @@ export default function Auth() {
     setSidthPercent(60);
   }, []);
 
+
+
+   ////////////////////
+  //  Signin method //
+  ////////////////////
+  const loginHandler = async () => {
+    if (email === null || password === null) return;
+    setLoading(true);
+    const data = {
+      email,
+      password,
+    };
+
+    const response: any = await AuthApi.login(data);
+    setLoading(false);
+    if (response.status === 200) {
+      dispatch(login(response.data.user));
+      navigate("/");
+    }
+  };
+
   /////////////////////
   //  Signout method //
   /////////////////////
@@ -56,31 +77,10 @@ export default function Auth() {
       return;
     }
     const response: any = await AuthApi.register(data);
-    if (response.status === 201) {
-      setLoading(true);
-      navigate("/");
+    if (response.status === 201) {     
+      loginHandler();
     }
   };
-
-  ////////////////////
-  //  Signin method //
-  ////////////////////
-  const loginHandler = async (event: React.FormEvent<HTMLFormElement>) => {
-    if (email === null || password === null) return;
-    setLoading(true);
-    const data = {
-      email,
-      password,
-    };
-
-    const response: any = await AuthApi.login(data);
-    setLoading(false);
-    if (response.status === 200) {
-      dispatch(login(response.data.user));
-      navigate("/");
-    }
-  };
-
 
 
   return (
