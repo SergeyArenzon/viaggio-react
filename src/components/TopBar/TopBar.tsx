@@ -88,8 +88,8 @@ export default function TopBar(): JSX.Element {
               {showUserDropDown && <Modal cb={closeModal}>
 
                 <ul className={`topbar__user-dropdown topbar__user-dropdown--active`} onClick={() => setShowUserDropDown(false)}>
+                  <li className="topbar__username">Hi <strong>{user.firstName } {user.lastName}</strong>!</li>
                   <li>Profile</li>
-                  {/* <li></li> */}
                   <li className="topbar__logout" onClick={logoutHandler}>Logout <img src={logoutIcon}/></li>
                 </ul>
               </Modal>}
