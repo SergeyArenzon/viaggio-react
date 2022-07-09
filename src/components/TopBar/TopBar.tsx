@@ -72,13 +72,6 @@ export default function TopBar(): JSX.Element {
             </NavLink>
           </li>
           {/* <li>TEST</li> */}
-          <li>
-            {user && (
-              <div className="text-black">
-                {user.firstName} {user.lastName}
-              </div>
-            )}
-          </li>
         </ul>
         <div>
          {!user ? <NavLink
@@ -97,7 +90,7 @@ export default function TopBar(): JSX.Element {
                 <ul className={`topbar__user-dropdown topbar__user-dropdown--active`} onClick={() => setShowUserDropDown(false)}>
                   <li>Profile</li>
                   {/* <li></li> */}
-                  <li onClick={logoutHandler}>Logout <img src={logoutIcon}/></li>
+                  <li className="topbar__logout" onClick={logoutHandler}>Logout <img src={logoutIcon}/></li>
                 </ul>
               </Modal>}
             </div>

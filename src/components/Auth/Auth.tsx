@@ -127,7 +127,6 @@ export default function Auth() {
             <div className="auth__confirm">
               <BorderedButton buttonStyle="bordered-button--colored-bg bordered-button--rounded-radius" clickHandler={signUpMode ? registerHandler : loginHandler}>
                 {signUpMode ? "Register" : "Login"}
-                <button onClick={(e) => logoutHandler(e)}></button>
               </BorderedButton>
             </div>
           </form>

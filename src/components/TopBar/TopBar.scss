@@ -10,6 +10,7 @@
 }
 
 .topbar {
+    $self: &;
     // background-color: $mainGreen;
     color: black;
     height: 50px;
@@ -21,7 +22,6 @@
     padding: 0 60px;
     transition: background-color 0.5s linear;
     // font-family: $viaggioFontBold;
-
 
     &__user {
         height: 38px;
@@ -59,8 +59,10 @@
 
             li {
                 width: fit-content;
+                transition: color 0.2s linear;
                 &:hover {
                     color: $mainGreen;
+                    transition: color 0.2s linear;
                 }
             }
             
@@ -167,4 +169,18 @@
         align-items: center;
 
     }
+
+
+    &__logout {
+        color: red;
+
+        img {
+            height: 12px;
+        }
+
+        &:hover{
+            color: red !important;
+        }
+    }
+
 }
