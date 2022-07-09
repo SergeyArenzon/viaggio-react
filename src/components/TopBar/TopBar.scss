@@ -10,6 +10,7 @@
 }
 
 .topbar {
+    $self: &;
     // background-color: $mainGreen;
     color: black;
     height: 50px;
@@ -22,7 +23,6 @@
     transition: background-color 0.5s linear;
     // font-family: $viaggioFontBold;
 
-
     &__user {
         height: 38px;
         width: 38px;
@@ -33,9 +33,49 @@
         align-items: center;
         border: 3px $mainGreen solid;
         cursor: pointer;
+        position: relative;
 
         img {
             height: 25px;
+        }
+
+        &-dropdown {
+            list-style: none;
+            opacity: 0;
+            background-color: white;
+            width: 200px;
+            // height: 200px;
+            position: absolute;
+            top: calc(100% - 13px);
+            right: 0;
+            padding: 0;
+            margin: 0;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            padding-left: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+
+            li {
+                width: fit-content;
+                transition: color 0.2s linear;
+                &:hover {
+                    color: $mainGreen;
+                    transition: color 0.2s linear;
+                }
+            }
+            
+            
+            &--active {
+                opacity: 1;
+                transition: opacity 0.1s linear, top 0.1s linear;
+                top: calc(100% + 3px);
+                -webkit-box-shadow: -10px 10px 19px -2px rgba(0,0,0,0.75);
+                -moz-box-shadow: -10px 10px 19px -2px rgba(0,0,0,0.75);
+                box-shadow: -10px 10px 19px -2px rgba(0,0,0,0.75);
+
+            }
         }
     }
 
@@ -129,4 +169,18 @@
         align-items: center;
 
     }
+
+
+    &__logout {
+        color: red;
+
+        img {
+            height: 12px;
+        }
+
+        &:hover{
+            color: red !important;
+        }
+    }
+
 }

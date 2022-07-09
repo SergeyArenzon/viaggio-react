@@ -1,14 +1,24 @@
 import "./TopBar.scss";
 import { NavLink, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import BorderedButton from "../UI/BorderedButton/BorderedButton";
 import { useEffect, useState } from 'react';
 import logo from '../../assets/images/viaggio-logo.png';
 import userIcon from '../../assets/images/user.svg';
+import {logout} from '../../store/slices/authSlice';
+import { AuthApi } from '../../services/api/index';
+import logoutIcon from '../../assets/images/logout.svg';
+import Modal from "../UI/Modal/Modal";
+
+
 
 export default function TopBar(): JSX.Element {
   const user = useSelector((state: any) => state.auth.user);
-  const [topBarStyle, setTopBarStyle] = useState('')
+  const [topBarStyle, setTopBarStyle] = useState('');
+  const [showUserDropDown, setShowUserDropDown] = useState(false);
+
+  const dispatch = useDispatch();
+
 
 
   useEffect(() => {
@@ -26,9 +36,19 @@ export default function TopBar(): JSX.Element {
     }
   }
 
+  const logoutHandler = async() => {
+    await AuthApi.logout();
+    dispatch(logout());
+
+  }
   console.log("topbar",user);
 
+  const closeModal = () => {
+    
+    setShowUserDropDown(false)
+  }
   
+  console.log("showUserDropDown",showUserDropDown);
 
   return (
     <nav className="wrapper">
@@ -52,13 +72,6 @@ export default function TopBar(): JSX.Element {
             </NavLink>
           </li>
           {/* <li>TEST</li> */}
-          <li>
-            {user && (
-              <div className="text-black">
-                {user.firstName} {user.lastName}
-              </div>
-            )}
-          </li>
         </ul>
         <div>
          {!user ? <NavLink
@@ -70,8 +83,16 @@ export default function TopBar(): JSX.Element {
           </NavLink> 
           :
           
-           <div className="topbar__user">
+           <div className="topbar__user" onClick={() => !showUserDropDown && setShowUserDropDown(true)}>
               <img src={userIcon}/>
+              {showUserDropDown && <Modal cb={closeModal}>
+
+                <ul className={`topbar__user-dropdown topbar__user-dropdown--active`} onClick={() => setShowUserDropDown(false)}>
+                  <li>Profile</li>
+                  {/* <li></li> */}
+                  <li className="topbar__logout" onClick={logoutHandler}>Logout <img src={logoutIcon}/></li>
+                </ul>
+              </Modal>}
             </div>
           }
 

@@ -30,9 +30,8 @@ const authSlice = createSlice({
       state.isLoggedIn = Boolean(action.payload)
       state.loading = false;
     },
-    logout: (state) => {
-      state = initialState;
-    },
+    logout: () =>  initialState,
+    
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUserData.pending, (state, action) => {
