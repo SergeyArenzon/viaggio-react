@@ -1,6 +1,7 @@
 @import '../../../sass/variables';
 
 .bordered-button {
+    $self: &;
     border: 2px solid $mainGreen;
     height: 100%;
     width: 100%;
@@ -39,4 +40,14 @@
     &--rounded-radius {
         border-radius: 50px;
     }
+
+    &--no-hover {
+        
+        &:hover {
+            background-color: inherit;
+            color: inherit;
+          }
+    }
+
+
 }

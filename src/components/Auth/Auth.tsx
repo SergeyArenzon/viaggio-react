@@ -9,14 +9,14 @@ import Input from "../UI/Input/Input";
 import BorderedButton from "../UI/BorderedButton/BorderedButton";
 import logo from '../../assets/images/viaggio-logo.png';
 import { logout, login } from '../../store/slices/authSlice'
+import Loader from "../UI/Loader/Loader";
 
 export default function Auth() {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
   const [lastName, setLastName] = useState<string | null>(null);
   const [firstName, setFirstName] = useState<string | null>(null);
-
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [signUpMode, setSignUpMode] = useState(true);
   const [widthPercent, setSidthPercent] = useState(30);
 
@@ -32,16 +32,16 @@ export default function Auth() {
   //  Signout method //
   /////////////////////
   const registerHandler = async (event: React.FormEvent<HTMLFormElement>) => {
-    // event.preventDefault();
 
     if (
       email === null ||
       password === null ||
       firstName === null ||
       lastName === null
-    ) {
-      return;
-    }
+      ) {
+        return;
+      }
+    setLoading(true);
     const data = {
       email,
       password,
@@ -49,13 +49,15 @@ export default function Auth() {
       lastName,
     };
     const isValid = await userSchema.isValid(data);
-
+    
     if (!isValid) {
       alert("Creds isnt valid!");
+      setLoading(true);
       return;
     }
     const response: any = await AuthApi.register(data);
     if (response.status === 201) {
+      setLoading(true);
       navigate("/");
     }
   };
@@ -65,13 +67,14 @@ export default function Auth() {
   ////////////////////
   const loginHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     if (email === null || password === null) return;
+    setLoading(true);
     const data = {
       email,
       password,
     };
 
     const response: any = await AuthApi.login(data);
-    
+    setLoading(false);
     if (response.status === 200) {
       dispatch(login(response.data.user));
       navigate("/");
@@ -79,12 +82,6 @@ export default function Auth() {
   };
 
 
-  const logoutHandler = async (e: any) => {
-    e.preventDefault();    
-    const request = AuthApi.logout();
-    dispatch(logout());
-    navigate("/");
-  };
 
   return (
     <div className="auth">
@@ -125,8 +122,8 @@ export default function Auth() {
             </div>
             <p className="auth__text">Already have an account? <span onClick={() => setSignUpMode(!signUpMode)}>Click Here</span></p>
             <div className="auth__confirm">
-              <BorderedButton buttonStyle="bordered-button--colored-bg bordered-button--rounded-radius" clickHandler={signUpMode ? registerHandler : loginHandler}>
-                {signUpMode ? "Register" : "Login"}
+              <BorderedButton buttonStyle={`${!loading ? "bordered-button--colored-bg" : "bordered-button--no-hover"} bordered-button--rounded-radius`} clickHandler={signUpMode ? registerHandler : loginHandler}>
+                {loading ? <Loader/> :  signUpMode ? "Register" : "Login"}
               </BorderedButton>
             </div>
           </form>
