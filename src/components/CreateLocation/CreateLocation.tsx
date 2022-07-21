@@ -16,6 +16,7 @@ const CreateLocation = () => {
   const [description, setDescription] = useState<string>("");
   const [lat, setLat] = useState<string>("");
   const [lng, setLng] = useState<string>("");
+  const [loading, setLoading] = useState<Boolean>(false);
 
   const navigate = useNavigate();
 
@@ -93,8 +94,12 @@ const CreateLocation = () => {
           <input type="file" onChange={imagesInputHandler} multiple></input>
           <Input type="number" placeholder="lat" step="0.000001" setState={setLat}/>
           <Input type="number" placeholder="lng" step="0.000001" setState={setLng}/>
-          {/* <div onClick={submitHandler}>Create</div> */}
-          <BorderedButton>Create</BorderedButton>
+          <div style={{height:"40px", width: "100%"}}>
+
+            <BorderedButton buttonStyle={`${!loading ? "bordered-button--colored-bg" : "bordered-button--no-hover"} bordered-button--rounded-radius`}>
+                Create
+            </BorderedButton>
+          </div>
         </div>
       </div>
     </div>
