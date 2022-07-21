@@ -1,0 +1,30 @@
+.create-location {
+    height: 100%; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transform: translateX(-50%);
+    
+    &--slide-in {
+        transition: transform 0.2s ease-out;
+        transform: translateX(0);
+    }
+
+    &__image {
+        height: 100vh;
+    }
+
+    &__form {
+        width: 100%;
+    }
+    
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        margin: auto;
+    }
+}
+
