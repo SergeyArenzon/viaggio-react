@@ -1,9 +1,27 @@
+@import '../../sass/variables';
+
 .create-location {
     height: 100%; 
     display: flex;
     justify-content: space-between;
     align-items: center;
     transform: translateX(-50%);
+
+    &__title {
+        font-family: $viaggioFontBold;
+        text-align: center;
+        font-size: 27px;
+        color: $mainGreen;
+
+    }
+
+    &__label {
+        text-align: left;
+        display: block;
+        width: 100%;
+        font-size: 13px;
+        margin-top: 10px;
+    }
     
     &--slide-in {
         transition: transform 0.2s ease-out;

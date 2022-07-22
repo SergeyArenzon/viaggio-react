@@ -80,15 +80,15 @@ const CreateLocation = () => {
       <img src={createLocationImage} className={`create-location__image`} />
       <div className="create-location__form">
         <div className="create-location__content">
-          <h1>Create New Location</h1>
-          <div>Name</div>
+          <h1 className="create-location__title">Create New Location</h1>
+          <div className="create-location__label">Name</div>
           <Input type="text" setState={setName}/>
           {/* <input type="text" ref={nameRef}></input> */}
-          <div>Location</div>
+          <div className="create-location__label">Location</div>
           <Input type="text" setState={setLocation}/>
-          <div>Price</div>
+          <div className="create-location__label">Price</div>
           <Input type="number" setState={setPrice}/>
-          <div>Description</div>
+          <div className="create-location__label">Description</div>
           {/* <Input type="textarea" inputRef={descriptionRef}/> */}
           <Input type="textarea" setState={setDescription}/>
           <input type="file" onChange={imagesInputHandler} multiple></input>
