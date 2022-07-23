@@ -5,6 +5,7 @@ import { Locations } from "../../services/api/index";
 import createLocationImage from "../../assets/images/create-location-image.jpg";
 import Input from "../UI/Input/Input";
 import BorderedButton from "../UI/BorderedButton/BorderedButton";
+import addImageIcon from '../../assets/images/add-image.png';
 
 const CreateLocation = () => {
   const [images, setImages] = useState<File[]>([]);
@@ -91,14 +92,20 @@ const CreateLocation = () => {
           <div className="create-location__label">Description</div>
           {/* <Input type="textarea" inputRef={descriptionRef}/> */}
           <Input type="textarea" setState={setDescription}/>
+          <div className="create-location__label">Latitude</div>
           <Input type="number" placeholder="lat" step="0.000001" setState={setLat}/>
+          <div className="create-location__label">Longitude </div>
           <Input type="number" placeholder="lng" step="0.000001" setState={setLng}/>
-          <div style={{height:"40px", width: "100%"}}>
-          <input type="file" onChange={imagesInputHandler} multiple></input>
+          <div className="create-location__add-image">
+          <label htmlFor="add-image" className="add-image-label"><img src={addImageIcon}/></label>
+            <input type="file" id="add-image"  onChange={imagesInputHandler} multiple></input>
 
-            <BorderedButton buttonStyle={`${!loading ? "bordered-button--colored-bg" : "bordered-button--no-hover"} bordered-button--rounded-radius`}>
-                Create
-            </BorderedButton>
+              
+          </div>
+          <div style={{height:"40px", width: "100%",marginTop:"20px"}}>
+              <BorderedButton buttonStyle={`${!loading ? "bordered-button--colored-bg" : "bordered-button--no-hover"} bordered-button--rounded-radius`}>
+                  Create
+              </BorderedButton>
           </div>
         </div>
       </div>

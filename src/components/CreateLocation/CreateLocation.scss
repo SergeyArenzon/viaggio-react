@@ -44,5 +44,15 @@
         width: 300px;
         margin: auto;
     }
+
+    &__add-image {
+        .add-image-label {
+            cursor: pointer;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+    }
 }
 
