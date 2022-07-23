@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { userSchema } from "../../validations/user";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 // import { login, logout } from "../../features/user";
 import { AuthApi } from "../../services/api/index";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import "./Auth.scss";
 import Input from "../UI/Input/Input";
 import BorderedButton from "../UI/BorderedButton/BorderedButton";
 import logo from '../../assets/images/viaggio-logo.png';
-import { logout, login } from '../../store/slices/authSlice'
+import { login } from '../../store/slices/authSlice'
 import Loader from "../UI/Loader/Loader";
 import ErrorMessage from "../UI/ErrorMessage/ErrorMessage";
 
@@ -116,7 +116,7 @@ export default function Auth() {
       >
       </div>
       <div className="auth__form" style={{ width: `${widthPercent}%` }}>
-        <img className="auth__logo" src={logo} />
+        <img className="auth__logo" src={logo} alt="logo"/>
         <div className="auth__form-wrapper">
           <p className="auth__title">Welcome to <span>VIAGGIO</span>!</p>
           {error.message && <ErrorMessage>{error.message}</ErrorMessage>}

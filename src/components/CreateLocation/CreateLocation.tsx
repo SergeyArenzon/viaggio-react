@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CreateLocation.scss";
 import { useNavigate } from "react-router-dom";
 import { Locations } from "../../services/api/index";
@@ -17,7 +17,7 @@ const CreateLocation = () => {
   const [description, setDescription] = useState<string>("");
   const [lat, setLat] = useState<string>("");
   const [lng, setLng] = useState<string>("");
-  const [loading, setLoading] = useState<Boolean>(false);
+  const [loading, ] = useState<Boolean>(false);
 
   const navigate = useNavigate();
 
@@ -78,7 +78,7 @@ const CreateLocation = () => {
         slidePage ? "create-location--slide-in" : ""
       }`}
     >
-      <img src={createLocationImage} className={`create-location__image`} />
+      <img src={createLocationImage} className={`create-location__image`} alt="add-location"/>
       <div className="create-location__form">
         <div className="create-location__content">
           <h1 className="create-location__title">Create New Location</h1>
@@ -97,13 +97,13 @@ const CreateLocation = () => {
           <div className="create-location__label">Longitude </div>
           <Input type="number" placeholder="lng" step="0.000001" setState={setLng}/>
           <div className="create-location__add-image">
-          <label htmlFor="add-image" className="add-image-label"><img src={addImageIcon}/></label>
+          <label htmlFor="add-image" className="add-image-label"><img src={addImageIcon} alt="add-img"/></label>
             <input type="file" id="add-image"  onChange={imagesInputHandler} multiple></input>
 
               
           </div>
           <div style={{height:"40px", width: "100%",marginTop:"20px"}}>
-              <BorderedButton buttonStyle={`${!loading ? "bordered-button--colored-bg" : "bordered-button--no-hover"} bordered-button--rounded-radius`}>
+              <BorderedButton buttonStyle={`${!loading ? "bordered-button--colored-bg" : "bordered-button--no-hover"} bordered-button--rounded-radius`} clickHandler={submitHandler}>
                   Create
               </BorderedButton>
           </div>
