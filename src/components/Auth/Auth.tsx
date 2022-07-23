@@ -66,15 +66,11 @@ export default function Auth() {
   /////////////////////
   const registerHandler = async (event: React.FormEvent<HTMLFormElement>) => {
 
-    if(email === null){
-      setError({message: "Please fill email field", field: "email"});
-      return;
-    }
-    else if(password === null){
-      setError({message: "Please fill password field", field: "password"});
-      return;
-    }
-    else if(firstName === null){
+    let x = {y: 1}
+    console.log(x.z);
+    
+    
+    if(firstName === null){
       setError({message: "Please fill first name field", field: "firstName"});
       return;
     }
@@ -82,7 +78,14 @@ export default function Auth() {
       setError({message: "Please fill last name field", field: "lastName"});
       return;
     }
-    console.log(email,password,firstName,lastName);
+    else if(email === null){
+      setError({message: "Please fill email field", field: "email"});
+      return;
+    }
+    else if(password === null){
+      setError({message: "Please fill password field", field: "password"});
+      return;
+    }
     
     setLoading(true);
     const data = {
@@ -111,15 +114,8 @@ export default function Auth() {
         className="auth__description"
         style={{ width: `${100 - widthPercent}%` }}
       >
-        {/* <p>dfsdfsdfsdfsdfsd</p>
-        <p>dfsdfsdfsdfsdfsd</p>
-        <p>dfsdfsdfsdfsdfsd</p>
-        <p>dfsdfsdfsdfsdfsd</p> */}
       </div>
       <div className="auth__form" style={{ width: `${widthPercent}%` }}>
-        {/* <button onClick={() =>  AuthApi.user()}>checkckkk</button>
-        <button onClick={logoutHandler}>logout</button>
-        <button onClick={logoutHandler}>test</button> */}
         <img className="auth__logo" src={logo} />
         <div className="auth__form-wrapper">
           <p className="auth__title">Welcome to <span>VIAGGIO</span>!</p>
