@@ -91,10 +91,10 @@ const CreateLocation = () => {
           <div className="create-location__label">Description</div>
           {/* <Input type="textarea" inputRef={descriptionRef}/> */}
           <Input type="textarea" setState={setDescription}/>
-          <input type="file" onChange={imagesInputHandler} multiple></input>
           <Input type="number" placeholder="lat" step="0.000001" setState={setLat}/>
           <Input type="number" placeholder="lng" step="0.000001" setState={setLng}/>
           <div style={{height:"40px", width: "100%"}}>
+          <input type="file" onChange={imagesInputHandler} multiple></input>
 
             <BorderedButton buttonStyle={`${!loading ? "bordered-button--colored-bg" : "bordered-button--no-hover"} bordered-button--rounded-radius`}>
                 Create
