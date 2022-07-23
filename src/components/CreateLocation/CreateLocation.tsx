@@ -1,44 +1,48 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import "./CreateLocation.scss";
 import { useNavigate } from "react-router-dom";
-import ImagesUrlInput from "../ImagesUrlInput/ImagesUrlInput";
 import { Locations } from "../../services/api/index";
-
+import createLocationImage from "../../assets/images/create-location-image.jpg";
+import Input from "../UI/Input/Input";
+import BorderedButton from "../UI/BorderedButton/BorderedButton";
+import addImageIcon from '../../assets/images/add-image.png';
 
 const CreateLocation = () => {
   const [images, setImages] = useState<File[]>([]);
-  const nameRef = useRef<HTMLInputElement>(null);
-  const locationRef = useRef<HTMLInputElement>(null);
-  const priceRef = useRef<HTMLInputElement>(null);
-  const descriptionRef = useRef<HTMLTextAreaElement>(null);
-  const latRef = useRef<HTMLInputElement>(null);
-  const lngRef = useRef<HTMLInputElement>(null);
+  const [slidePage, setSlidePage] = useState(false);
+  
+  const [name, setName] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
+  const [price, setPrice] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [lat, setLat] = useState<string>("");
+  const [lng, setLng] = useState<string>("");
+  const [loading, setLoading] = useState<Boolean>(false);
 
   const navigate = useNavigate();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setSlidePage(true);
+  }, []);
 
-  const submitHandler = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    event.preventDefault();
-
+  const submitHandler = async (): Promise<void> => {
     if (
-      nameRef.current === null ||
-      locationRef.current === null ||
-      priceRef.current === null ||
-      descriptionRef.current === null ||
-      latRef.current === null ||
-      lngRef.current === null
+      name === "" ||
+      location === "" ||
+      price === "" ||
+      description === "" ||
+      lat === "" ||
+      lng === ""
     ) {
       return;
     }
 
-    console.log(images);
-    
     const data = {
-      name: nameRef.current.value,
-      location: locationRef.current.value,
-      price: Number(priceRef.current.value),
-      description: descriptionRef.current.value,
-      coordinate: [Number(latRef.current.value), Number(lngRef.current.value)],
+      name,
+      location,
+      price: Number(price),
+      description,
+      coordinate: [Number(lat), Number(lng)],
     };
 
     // check for input validity
@@ -46,55 +50,66 @@ const CreateLocation = () => {
     const isValid: boolean = true;
 
     if (isValid) {
-      try{
+      try {
         const location = await Locations.create(data);
-        if(images.length > 0){
+        if (images.length > 0) {
           const formData = new FormData();
-          [...images].forEach(image => {
+          [...images].forEach((image) => {
             formData.append("image", image);
           });
-  
+
           Locations.uploadImage(location.data.response._id, formData);
         }
         navigate("/");
-      } catch(error) {
+      } catch (error) {
         console.log(error);
       }
     }
   };
 
-
   const imagesInputHandler = (e: any) => {
     const imagesList = e.target.files;
     setImages(imagesList);
-  }
-  
+  };
+
   return (
-    <form onSubmit={submitHandler}>
-      <h1>Create New Location</h1>
-      <div>Name</div>
-      <input type="text" ref={nameRef}></input>
-      <div>Location</div>
-      <input type="text" ref={locationRef}></input>
-      <div>Price</div>
-      <input type="number" ref={priceRef}></input>
-      <div>Description</div>
-      <textarea ref={descriptionRef}></textarea>
-      <input type="file" onChange={imagesInputHandler} multiple></input>
-      <input
-        type="number"
-        step="0.000001"
-        ref={latRef}
-        placeholder="lat"
-      ></input>
-      <input
-        type="number"
-        step="0.000001"
-        ref={lngRef}
-        placeholder="lng"
-      ></input>
-      <button>Create</button>
-    </form>
+    <div
+      className={`create-location ${
+        slidePage ? "create-location--slide-in" : ""
+      }`}
+    >
+      <img src={createLocationImage} className={`create-location__image`} />
+      <div className="create-location__form">
+        <div className="create-location__content">
+          <h1 className="create-location__title">Create New Location</h1>
+          <div className="create-location__label">Name</div>
+          <Input type="text" setState={setName}/>
+          {/* <input type="text" ref={nameRef}></input> */}
+          <div className="create-location__label">Location</div>
+          <Input type="text" setState={setLocation}/>
+          <div className="create-location__label">Price</div>
+          <Input type="number" setState={setPrice}/>
+          <div className="create-location__label">Description</div>
+          {/* <Input type="textarea" inputRef={descriptionRef}/> */}
+          <Input type="textarea" setState={setDescription}/>
+          <div className="create-location__label">Latitude</div>
+          <Input type="number" placeholder="lat" step="0.000001" setState={setLat}/>
+          <div className="create-location__label">Longitude </div>
+          <Input type="number" placeholder="lng" step="0.000001" setState={setLng}/>
+          <div className="create-location__add-image">
+          <label htmlFor="add-image" className="add-image-label"><img src={addImageIcon}/></label>
+            <input type="file" id="add-image"  onChange={imagesInputHandler} multiple></input>
+
+              
+          </div>
+          <div style={{height:"40px", width: "100%",marginTop:"20px"}}>
+              <BorderedButton buttonStyle={`${!loading ? "bordered-button--colored-bg" : "bordered-button--no-hover"} bordered-button--rounded-radius`}>
+                  Create
+              </BorderedButton>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
