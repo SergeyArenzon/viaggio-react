@@ -22,8 +22,6 @@ function App() {
   }, [dispatch]);
 
   
-
-  
   return (
     <BrowserRouter>
       <Layout>
