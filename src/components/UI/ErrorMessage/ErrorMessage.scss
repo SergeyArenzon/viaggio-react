@@ -1,0 +1,9 @@
+@import '../../../sass/variables';
+
+.error-message {
+    color: red;
+    border: 1px red solid;
+    border-radius: 10px;
+    text-align: center;
+    font-family: Montserrat-italic;
+}

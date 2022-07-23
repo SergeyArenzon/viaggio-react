@@ -4,7 +4,7 @@ import './Input.scss'
 type inputProps = {
      
         type: string,
-        setState?: (e: string) => void,
+        setState?: (e: string | null) => void,
         placeholder?: string,
         step?: string
     
@@ -12,7 +12,8 @@ type inputProps = {
 export default function Input({ type, setState, placeholder, step } : inputProps) {
 
   const changeHandler = (e: string) => {
-    if(e && setState) setState(e);
+    if(setState) setState(e);
+    else if(setState) setState(null);
     
   } 
   if(type === "textearea") return <textarea className="input"  onChange={(e) => changeHandler(e.target.value)}></textarea>

@@ -2,7 +2,6 @@
 // Edit view location
 // //////////////////
 
-import { AxiosResponse } from "axios";
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Locations } from '../../services/api/index'
