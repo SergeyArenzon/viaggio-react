@@ -41,15 +41,11 @@ export default function TopBar(): JSX.Element {
     dispatch(logout());
 
   }
-  console.log("topbar",user);
 
   const closeModal = () => {
-    
     setShowUserDropDown(false)
   }
   
-  console.log("showUserDropDown",showUserDropDown);
-
   return (
     <nav className="wrapper">
       <div className={`topbar ${topBarStyle}`}>

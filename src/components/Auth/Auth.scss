@@ -6,6 +6,12 @@
     align-items: center;
     display: flex;
 
+
+    &__input-error {
+        input {
+            border-color: red;
+        }
+    }
     &__logo {
         height: 100px;
         margin-bottom: 30px;
@@ -67,7 +73,7 @@
         transition: all 1s ease-out;
 
         form {
-            width: 300px;
+            // width: 300px;
         }
     }
     &__form-wrapper {
