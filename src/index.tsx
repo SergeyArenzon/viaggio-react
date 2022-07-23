@@ -2,25 +2,11 @@ import React from "react";
 import ReactDOM from 'react-dom/client';
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
-import userReducer from "./features/user";
 import './sass/_global.scss';
 import './sass/_typography.scss';
 
 import store from './store/store';
-
-
-
-
-
-
-// const store = configureStore({
-//   reducer: {
-//     user: userReducer
-//   },
-//   devTools: true
-// });
 
 
 const rootElement = document.getElementById('root');
