@@ -1,4 +1,4 @@
-import { makeStyles } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import {Rating} from "@mui/material";
 import {Box} from "@mui/material";
 import { useState, useEffect } from "react";
@@ -18,7 +18,7 @@ const labels: Record<number,string> = {
   5: "Excellent+",
 };
 
-const useStyles = makeStyles({
+const useStyles:any = makeStyles({
   root: {
     width: 200,
     display: "flex",
