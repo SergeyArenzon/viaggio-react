@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { AuthApi } from '../../services/api/index';
+import { IUser } from '../../types/types';
 
 const initialState: IState = {
   isLoggedIn: false,
@@ -19,7 +20,7 @@ interface IState {
 }
 
 
-export const fetchUserData = createAsyncThunk<any>(
+export const fetchUserData = createAsyncThunk<IUser>(
   'auth/fetchUser',
   async () => {
     try {
