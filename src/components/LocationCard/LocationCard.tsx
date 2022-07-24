@@ -1,7 +1,7 @@
 import './LocationCard.scss';
 import noBackground from "../../assets/images/no-background.jpg";
 import {Link} from 'react-router-dom';
-import Rating from "@material-ui/lab/Rating";
+import {Rating} from "@mui/material";
 
 
 export default function LocationCard({ location }: {location: ILocation}) {
