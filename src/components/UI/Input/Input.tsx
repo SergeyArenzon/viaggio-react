@@ -4,7 +4,7 @@ import './Input.scss'
 type inputProps = {
      
         type: string,
-        setState?: (e: string | null) => void,
+        setState?: any,
         placeholder?: string,
         step?: string
     

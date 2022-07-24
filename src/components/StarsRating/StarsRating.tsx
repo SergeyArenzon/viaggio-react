@@ -1,6 +1,6 @@
-import { makeStyles } from "@material-ui/core/styles";
-import Rating from "@material-ui/lab/Rating";
-import Box from "@material-ui/core/Box";
+import { makeStyles } from "@mui/styles";
+import {Rating} from "@mui/material";
+import {Box} from "@mui/material";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { RatingApi } from '../../services/api/index';
@@ -18,7 +18,7 @@ const labels: Record<number,string> = {
   5: "Excellent+",
 };
 
-const useStyles = makeStyles({
+const useStyles:any = makeStyles({
   root: {
     width: 200,
     display: "flex",

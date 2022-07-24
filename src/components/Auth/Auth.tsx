@@ -66,9 +66,6 @@ export default function Auth() {
   /////////////////////
   const registerHandler = async (event: React.FormEvent<HTMLFormElement>) => {
 
-    let x = {y: 1}
-    console.log(x.z);
-    
     
     if(firstName === null){
       setError({message: "Please fill first name field", field: "firstName"});
