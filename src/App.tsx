@@ -12,8 +12,8 @@ import {fetchUserData} from './store/slices/authSlice'
 
 
 function App() {
-  const user:any = useSelector((state: IUser) => state.user.info);
-  const dispatch = useDispatch();
+  // const user:any = useSelector((state: IUser) => state.user.info);
+  const dispatch = useDispatch<any>();
 
   useEffect(() => {
    
