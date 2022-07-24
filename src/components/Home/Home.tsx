@@ -5,6 +5,7 @@ import { Locations } from "../../services/api/index";
 import './Home.scss';
 import BorderedButtom from './../UI/BorderedButton/BorderedButton';
 import LocationCard from '../LocationCard/LocationCard';
+import {ILocation, IUser} from '../../types/types';
 
 
 export default function Home() {

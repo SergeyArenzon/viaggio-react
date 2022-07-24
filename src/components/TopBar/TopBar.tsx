@@ -1,6 +1,6 @@
 import "./TopBar.scss";
-import { NavLink, useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import BorderedButton from "../UI/BorderedButton/BorderedButton";
 import { useEffect, useState } from 'react';
 import logo from '../../assets/images/viaggio-logo.png';
@@ -9,11 +9,12 @@ import {logout} from '../../store/slices/authSlice';
 import { AuthApi } from '../../services/api/index';
 import logoutIcon from '../../assets/images/logout.svg';
 import Modal from "../UI/Modal/Modal";
+import { useAppSelector } from "../../hooks";
 
 
 
 export default function TopBar(): JSX.Element {
-  const user = useSelector((state: any) => state.auth.user);
+  const user = useAppSelector((state:any) => state.auth.user)
   const [topBarStyle, setTopBarStyle] = useState('');
   const [showUserDropDown, setShowUserDropDown] = useState(false);
 

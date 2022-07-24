@@ -8,17 +8,15 @@ import EditLocation from "./components/EditLocation/EditLocation";
 import Auth from "./components/Auth/Auth";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {fetchUserData} from './store/slices/authSlice'
-
+import { fetchUserData } from './store/slices/authSlice'
+import { AppDispatch } from "./store/store";
+import {useAppSelector, useAppDispatch} from './../src/hooks'
 
 function App() {
-  // const user:any = useSelector((state: IUser) => state.user.info);
-  const dispatch = useDispatch<any>();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-   
-    dispatch(fetchUserData())
-    
+    dispatch(fetchUserData());
   }, [dispatch]);
 
 

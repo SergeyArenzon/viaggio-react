@@ -1,6 +1,6 @@
 import { makeStyles } from "@mui/styles";
-import {Rating} from "@mui/material";
-import {Box} from "@mui/material";
+import { Rating } from "@mui/material";
+import { Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { RatingApi } from '../../services/api/index';
@@ -46,7 +46,7 @@ const StarsRating = ({ currentRating }: StarsRatingProps): JSX.Element => {
     if(!id){
       return
     }
-    const res = await RatingApi.update(id, data);
+    await RatingApi.update(id, data);
     
   };
 
