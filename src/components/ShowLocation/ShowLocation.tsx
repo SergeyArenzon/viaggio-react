@@ -112,11 +112,12 @@ const ShowLocation = (): JSX.Element => {
             />
           )}
         </div>
-        <div className="location-info">
-        
+        <div className="images">
           {locationData.images.length > 0 && (
-            <ImageCarousel images={locationData.images} />
-          )}
+              <ImageCarousel images={locationData.images} />
+            )}
+        </div>
+        <div className="location-info">
           <StarsRating  currentRating={locationData.avarageRating} />
           <h1 className="text-center text-3xl font-bold">{locationData.name}</h1>
           <div>Location:{locationData.location}</div>
@@ -134,16 +135,18 @@ const ShowLocation = (): JSX.Element => {
   
 
 
+        <div className="comments">
 
-        <form onSubmit={onCommentCreate}>
-          <input type="text" placeholder="title" ref={titleRef}></input>
-          <input type="text" placeholder="body" ref={bodyRef}></input>
-          <button>Submit</button>
-        </form>
-        {/* <div className="mb-5"> */}
+          <form onSubmit={onCommentCreate}>
+            <input type="text" placeholder="title" ref={titleRef}></input>
+            <input type="text" placeholder="body" ref={bodyRef}></input>
+            <button>Submit</button>
+          </form>
+          {/* <div className="mb-5"> */}
 
-        {/* </div> */}
-        {commentsForm}
+          {/* </div> */}
+          {commentsForm}
+        </div>
     </div>
   );
 };

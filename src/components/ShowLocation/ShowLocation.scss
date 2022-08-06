@@ -2,11 +2,23 @@
     margin-top: 50px;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr auto;
     gap: 30px;
     padding: 20px;
-}
-
-.location-map {
-    height: 300px;
+    
+    .location-map {
+        height: 300px;
+    }
+    .images { 
+    //    height:50vh
+    }
+    .location-info {
+        grid-column-start: 2;
+        grid-column-end: 4;
+    }
+    
+    .comments {
+        grid-column-start: 2;
+        grid-column-end: 4;
+    }
 }

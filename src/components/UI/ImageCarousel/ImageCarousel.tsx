@@ -16,14 +16,14 @@ const ImageCarousel = ({images}: ImageCarouselProps) => {
     const imagex = image
 
     return (
-      <div key={index} style={{height: "300px"}}>
-        <img src={imagex} style={{ height: "100%", width: "auto" }} />
+      <div key={index}>
+        <img src={imagex} />
       </div>
     );
   });
   return (
     <div>
-      <Carousel dynamicHeight={false} width={400} showThumbs={false} >
+      <Carousel dynamicHeight={false} width="100%"  showThumbs={false} >
         {imagesForm}
       </Carousel>
     </div>
