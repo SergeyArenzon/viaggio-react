@@ -5,7 +5,7 @@ import "./ImageCarousel.scss";
 
 
 type ImageCarouselProps = {
-  images: []
+  images: string[]
 }
 
 const ImageCarousel = ({images}: ImageCarouselProps) => {

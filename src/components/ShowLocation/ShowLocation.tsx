@@ -1,29 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
+import './ShowLocation.scss'
 import StarsRating from "../StarsRating/StarsRating";
 import ImageCarousel from "../UI/ImageCarousel/ImageCarousel";
 import Map from "../Map/Map";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Locations as locationApi, CommentApi } from "../../services/api/index";
+import {ILocation, IComment} from '../../types/types'
 
 
-interface Comment {
-  title: string;
-  body: string;
-  author: { firstName: string; lastName: string };
-}
-interface Location {
-  price: string, 
-  coordinate: [number, number],
-  description: string,
-  location: string,
-  name: string,
-  images: [],
-  avarageRating: number
-  
-}
 
 const ShowLocation = (): JSX.Element => {
-  const [locationData, setLocationData] = useState<Location | null>(null);
+  const [locationData, setLocationData] = useState<ILocation | null>(null);
   const [comments, setComment] = useState([]);
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLInputElement>(null);
@@ -102,7 +89,7 @@ const ShowLocation = (): JSX.Element => {
   if (comments && comments.length) {
     commentsForm = (
       <ul>
-        {comments.map((comment: Comment, index) => (
+        {comments.map((comment: IComment, index) => (
             <li key={index}>
               {" "}
               Title: {comment.title} Body: {comment.body} Author:{" "}
@@ -116,41 +103,48 @@ const ShowLocation = (): JSX.Element => {
 
   
   return (
-    <React.Fragment>
-      <div>
+    <div className="show-location">
+      <div className="location-map">
         {locationData.coordinate[0] && locationData.coordinate[1] && (
-          <Map
-            lat={locationData.coordinate[0]}
-            lng={locationData.coordinate[1]}
-          />
-        )}
-
-        <h1 className="text-center text-3xl font-bold">{locationData.name}</h1>
-        <div>Location:{locationData.location}</div>
-        <div>Price:{locationData.price}$</div>
-        <div>Discription:{locationData.description}</div>
-
-        <div>
-          <Link to={`/locations/${params.id}/edit`}>
-            <button>Edit</button>
-          </Link>
-          <button onClick={onDeleteHandler}>Delete</button>
+            <Map
+              lat={locationData.coordinate[0]}
+              lng={locationData.coordinate[1]}
+            />
+          )}
         </div>
-      </div>
-      <form onSubmit={onCommentCreate}>
-        <input type="text" placeholder="title" ref={titleRef}></input>
-        <input type="text" placeholder="body" ref={bodyRef}></input>
-        <button>Submit</button>
-      </form>
-      {/* <div className="mb-5"> */}
+        <div className="location-info">
+        
+          {locationData.images.length > 0 && (
+            <ImageCarousel images={locationData.images} />
+          )}
+          <StarsRating  currentRating={locationData.avarageRating} />
+          <h1 className="text-center text-3xl font-bold">{locationData.name}</h1>
+          <div>Location:{locationData.location}</div>
+          <div>Price:{locationData.price}$</div>
+          <div>Discription:{locationData.description}</div>
 
-        <StarsRating  currentRating={locationData.avarageRating} />
-      {/* </div> */}
-      {locationData.images.length > 0 && (
-        <ImageCarousel images={locationData.images} />
-      )}
-      {commentsForm}
-    </React.Fragment>
+          <div>
+            <Link to={`/locations/${params.id}/edit`}>
+              <button>Edit</button>
+            </Link>
+            <button onClick={onDeleteHandler}>Delete</button>
+          </div>
+        </div>
+
+  
+
+
+
+        <form onSubmit={onCommentCreate}>
+          <input type="text" placeholder="title" ref={titleRef}></input>
+          <input type="text" placeholder="body" ref={bodyRef}></input>
+          <button>Submit</button>
+        </form>
+        {/* <div className="mb-5"> */}
+
+        {/* </div> */}
+        {commentsForm}
+    </div>
   );
 };
 

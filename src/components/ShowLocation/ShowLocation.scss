@@ -1,0 +1,12 @@
+.show-location {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 30px;
+    padding: 20px;
+}
+
+.location-map {
+    height: 300px;
+}
