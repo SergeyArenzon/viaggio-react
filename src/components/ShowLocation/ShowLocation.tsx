@@ -25,7 +25,6 @@ interface Location {
 const ShowLocation = (): JSX.Element => {
   const [locationData, setLocationData] = useState<Location | null>(null);
   const [comments, setComment] = useState([]);
-  const [avgRating, setAvgRating] = useState<null | number>(null);
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLInputElement>(null);
   const params = useParams();
@@ -115,6 +114,7 @@ const ShowLocation = (): JSX.Element => {
     );
   }
 
+  
   return (
     <React.Fragment>
       <div>
