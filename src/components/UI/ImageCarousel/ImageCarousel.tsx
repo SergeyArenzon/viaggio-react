@@ -5,20 +5,25 @@ import "./ImageCarousel.scss";
 
 
 type ImageCarouselProps = {
-  images: []
+  images: string[]
 }
 
 const ImageCarousel = ({images}: ImageCarouselProps) => {
   const imagesForm = images.map((image, index) => {
+    // aws image
+    // const imagex = `${process.env.REACT_APP_API_URL}/location/${image}/download`
+    // aws image
+    const imagex = image
+
     return (
-      <div key={index} style={{height: "300px"}}>
-        <img src={`${process.env.REACT_APP_API_URL}/location/${image}/download`} style={{ height: "100%", width: "auto" }} />
+      <div key={index}>
+        <img src={imagex} />
       </div>
     );
   });
   return (
     <div>
-      <Carousel dynamicHeight={false} width={400}>
+      <Carousel dynamicHeight={true}   showThumbs={false} >
         {imagesForm}
       </Carousel>
     </div>

@@ -6,7 +6,12 @@ import { ILocation } from '../../types/types';
 
 
 export default function LocationCard({ location }: {location: ILocation}) {
-  let image = location.images.length > 0 ? `${ process.env.REACT_APP_API_URL}/location/${location.images[0]}/download` : noBackground
+  // aws images 
+  // const previewImage = `${ process.env.REACT_APP_API_URL}/location/${location.images[0]}/download`
+  // aws images 
+  const previewImage = location.images[0]
+
+  let image = location.images.length > 0 ? `${previewImage}` : noBackground
 
 
   return (
