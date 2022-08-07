@@ -23,7 +23,7 @@ const ImageCarousel = ({images}: ImageCarouselProps) => {
   });
   return (
     <div>
-      <Carousel dynamicHeight={false} width="100%"  showThumbs={false} >
+      <Carousel dynamicHeight={true}   showThumbs={false} >
         {imagesForm}
       </Carousel>
     </div>

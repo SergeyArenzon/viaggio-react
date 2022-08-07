@@ -113,16 +113,16 @@ const ShowLocation = (): JSX.Element => {
           )}
         </div>
         <div className="images">
+          <h1 className="text-center text-3xl font-bold">{locationData.name}</h1>
           {locationData.images.length > 0 && (
               <ImageCarousel images={locationData.images} />
-            )}
+              )}
+              <div>Location:{locationData.location}</div>
+              <div>Price:{locationData.price}$</div>
+              <div>Discription:{locationData.description}</div>
+              <StarsRating  currentRating={locationData.avarageRating} />
         </div>
         <div className="location-info">
-          <StarsRating  currentRating={locationData.avarageRating} />
-          <h1 className="text-center text-3xl font-bold">{locationData.name}</h1>
-          <div>Location:{locationData.location}</div>
-          <div>Price:{locationData.price}$</div>
-          <div>Discription:{locationData.description}</div>
 
           <div>
             <Link to={`/locations/${params.id}/edit`}>
