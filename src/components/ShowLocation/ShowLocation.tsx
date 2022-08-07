@@ -6,6 +6,7 @@ import Map from "../Map/Map";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Locations as locationApi, CommentApi } from "../../services/api/index";
 import {ILocation, IComment} from '../../types/types'
+import PictureGallery from "../UI/PictureGallery/PictureGallery";
 
 
 
@@ -115,7 +116,8 @@ const ShowLocation = (): JSX.Element => {
         <div className="images">
           <h1 className="text-center text-3xl font-bold">{locationData.name}</h1>
           {locationData.images.length > 0 && (
-              <ImageCarousel images={locationData.images} />
+              // <ImageCarousel images={locationData.images} />
+              <PictureGallery picturesUrl={locationData.images}/>
               )}
               <div>Location:{locationData.location}</div>
               <div>Price:{locationData.price}$</div>
