@@ -9,18 +9,18 @@ export default function LocationCard({ location }: {location: ILocation}) {
   // aws images 
   // const previewImage = `${ process.env.REACT_APP_API_URL}/location/${location.images[0]}/download`
   // aws images 
-  const previewImage = location.images[0]
+  const previewImage = location.images ? location.images[0] : null
 
-  let image = location.images.length > 0 ? `${previewImage}` : noBackground
+  let image = location.images?.length > 0 ? `${previewImage}` : noBackground
 
 
   return (
     <div className="location">
-        <img className={`location__image ${location.images.length === 0 ? "location__image--empty" : ""}`} src={image} alt="location" />
-        {location?.ratings.length > 0 && <div className='location__rating'>
+        <img className={`location__image ${!location.images ? "location__image--empty" : ""}`} src={image} alt="location" />
+        {/* {location?.ratings.length > 0 && <div className='location__rating'>
           <Rating name="read only" value={location?.avarageRating} readOnly/>
           <span>({location.ratings.length})</span>
-        </div>}
+        </div>} */}
         <div className="location__info">
         <div className="location__name location__title">{location.name}</div>
         <div className="location__location"><span className="location__title">Where:</span> {location.location}</div>

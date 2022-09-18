@@ -47,6 +47,8 @@ export default function TopBar(): JSX.Element {
     setShowUserDropDown(false)
   }
   
+  console.log(user);
+  
   return (
     <nav className="wrapper">
       <div className={`topbar ${topBarStyle}`}>
@@ -71,7 +73,7 @@ export default function TopBar(): JSX.Element {
           {/* <li>TEST</li> */}
         </ul>
         <div>
-         {!user ? <NavLink
+        {!user ? <NavLink
             className="topbar__login"
             to="/auth"
             style={({ isActive }) => (isActive ? { color: "red" } : {})}
@@ -80,12 +82,12 @@ export default function TopBar(): JSX.Element {
           </NavLink> 
           :
           
-           <div className="topbar__user" onClick={() => !showUserDropDown && setShowUserDropDown(true)}>
+          <div className="topbar__user" onClick={() => !showUserDropDown && setShowUserDropDown(true)}>
               <img src={userIcon}/>
               {showUserDropDown && <Modal cb={closeModal}>
 
                 <ul className={`topbar__user-dropdown topbar__user-dropdown--active`} onClick={() => setShowUserDropDown(false)}>
-                  <li className="topbar__username">Hi <strong>{user.firstName } {user.lastName}</strong>!</li>
+                  <li className="topbar__username">Hi <strong>{user.firstname } {user.lastname}</strong>!</li>
                   <li>Profile</li>
                   <li className="topbar__logout" onClick={logoutHandler}>Logout <img src={logoutIcon}/></li>
                 </ul>

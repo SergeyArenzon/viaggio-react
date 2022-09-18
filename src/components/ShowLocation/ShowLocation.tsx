@@ -6,6 +6,7 @@ import Map from "../Map/Map";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Locations as locationApi, CommentApi } from "../../services/api/index";
 import {ILocation, IComment} from '../../types/types'
+import PictureGallery from "../UI/PictureGallery/PictureGallery";
 
 
 
@@ -93,7 +94,7 @@ const ShowLocation = (): JSX.Element => {
             <li key={index}>
               {" "}
               Title: {comment.title} Body: {comment.body} Author:{" "}
-              {comment.author.firstName + " " + comment.author.lastName}
+              {comment.first_name + " " + comment.last_name}
             </li>
           )
         )}
@@ -105,7 +106,7 @@ const ShowLocation = (): JSX.Element => {
   return (
     <div className="show-location">
       <div className="location-map">
-        {locationData.coordinate[0] && locationData.coordinate[1] && (
+        {locationData.coordinate && locationData.coordinate[0] && locationData.coordinate[1] && (
             <Map
               lat={locationData.coordinate[0]}
               lng={locationData.coordinate[1]}
@@ -114,8 +115,9 @@ const ShowLocation = (): JSX.Element => {
         </div>
         <div className="images">
           <h1 className="text-center text-3xl font-bold">{locationData.name}</h1>
-          {locationData.images.length > 0 && (
-              <ImageCarousel images={locationData.images} />
+          {locationData.images?.length > 0 && (
+              // <ImageCarousel images={locationData.images} />
+              <PictureGallery picturesUrl={locationData.images}/>
               )}
               <div>Location:{locationData.location}</div>
               <div>Price:{locationData.price}$</div>
