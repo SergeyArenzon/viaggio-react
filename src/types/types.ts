@@ -27,5 +27,6 @@ export interface IRating {
   export interface IComment {
     title: string;
     body: string;
-    author: { firstName: string; lastName: string };
+    firstname: string;
+    lastname: string;
   }

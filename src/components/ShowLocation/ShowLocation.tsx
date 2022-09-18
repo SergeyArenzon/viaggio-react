@@ -94,7 +94,7 @@ const ShowLocation = (): JSX.Element => {
             <li key={index}>
               {" "}
               Title: {comment.title} Body: {comment.body} Author:{" "}
-              {comment.author.firstName + " " + comment.author.lastName}
+              {comment.firstname + " " + comment.lastname}
             </li>
           )
         )}
