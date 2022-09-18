@@ -106,7 +106,7 @@ const ShowLocation = (): JSX.Element => {
   return (
     <div className="show-location">
       <div className="location-map">
-        {locationData.coordinate[0] && locationData.coordinate[1] && (
+        {locationData.coordinate && locationData.coordinate[0] && locationData.coordinate[1] && (
             <Map
               lat={locationData.coordinate[0]}
               lng={locationData.coordinate[1]}
@@ -115,7 +115,7 @@ const ShowLocation = (): JSX.Element => {
         </div>
         <div className="images">
           <h1 className="text-center text-3xl font-bold">{locationData.name}</h1>
-          {locationData.images.length > 0 && (
+          {locationData.images?.length > 0 && (
               // <ImageCarousel images={locationData.images} />
               <PictureGallery picturesUrl={locationData.images}/>
               )}
