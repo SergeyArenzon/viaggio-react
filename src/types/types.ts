@@ -27,6 +27,6 @@ export interface IRating {
   export interface IComment {
     title: string;
     body: string;
-    firstname: string;
-    lastname: string;
+    first_name: string;
+    last_name: string;
   }
