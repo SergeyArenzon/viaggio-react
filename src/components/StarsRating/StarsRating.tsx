@@ -42,7 +42,7 @@ const StarsRating = ({ currentRating }: StarsRatingProps): JSX.Element => {
 
   const onRatingClickHandler = async () => {
     
-    const data = { rating: Number(value) };
+    const data = Number(value) ;
     if(!id){
       return
     }
