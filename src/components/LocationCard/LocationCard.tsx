@@ -17,10 +17,10 @@ export default function LocationCard({ location }: {location: ILocation}) {
   return (
     <div className="location">
         <img className={`location__image ${!location.images ? "location__image--empty" : ""}`} src={image} alt="location" />
-        {/* {location?.ratings.length > 0 && <div className='location__rating'>
-          <Rating name="read only" value={location?.avarageRating} readOnly/>
-          <span>({location.ratings.length})</span>
-        </div>} */}
+        {location?.rating_count > 0 && <div className='location__rating'>
+          <Rating name="read only" value={+(Math.round(location.rating_sum / location.rating_count * 2) / 2).toFixed(1)} readOnly/>
+          <span>({location.rating_count})</span>
+        </div>}
         <div className="location__info">
         <div className="location__name location__title">{location.name}</div>
         <div className="location__location"><span className="location__title">Where:</span> {location.location}</div>

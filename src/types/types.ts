@@ -7,7 +7,8 @@
     name: string,
     images: string[],
     id: string,
-    avarageRating: number,
+    rating_count: number,
+    rating_sum: number,
     ratings: [IRating]
   }
   export interface IUser {

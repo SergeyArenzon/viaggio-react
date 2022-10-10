@@ -122,7 +122,7 @@ const ShowLocation = (): JSX.Element => {
               <div>Location:{locationData.location}</div>
               <div>Price:{locationData.price}$</div>
               <div>Discription:{locationData.description}</div>
-              <StarsRating  currentRating={locationData.avarageRating} />
+              <StarsRating  currentRating={+(Math.round(locationData.rating_sum / locationData.rating_count * 2) / 2).toFixed(1)} />
         </div>
         <div className="location-info">
 
